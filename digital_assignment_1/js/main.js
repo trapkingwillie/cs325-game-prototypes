@@ -16,11 +16,10 @@ window.onload = function() {
     var game = new Phaser.Game( 800, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update, render: render } );
     
     function preload() {
-        // Load an image and call it 'logo'.
         game.load.image( 'astronaut', 'assets/astronaut.png', 150, 150 );
         game.load.image('earth', 'assets/earth.jpg', 800, 600);
         game.load.image('asteroids', 'assets/asteroid.png', 50, 50);
-        game.load.audio('theme', 'assets/digital_assignment_1_music.mid');
+        game.load.audio('theme', 'assets/digital_assignment_1_music.mp3');
     }
     
     var astronaut;
@@ -76,6 +75,7 @@ window.onload = function() {
     function render() 
     {
         game.debug.text('Stay on the map and avoid asteroids for: '+ countdown.duration, 32, 32);
+
 
     }
     
