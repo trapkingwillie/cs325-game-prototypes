@@ -13,97 +13,90 @@ window.onload = function() {
     
     "use strict";
     
-    var game = new Phaser.Game( 800, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update } );
+    var game = new Phaser.Game( 800, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update, render: render } );
     
     function preload() {
         // Load an image and call it 'logo'.
-        game.load.image( 'astronaut', 'assets/astronaut.jpg', 150, 150 );
+        game.load.image( 'astronaut', 'assets/astronaut.png', 150, 150 );
         game.load.image('earth', 'assets/earth.jpg', 800, 600);
-        game.load.image('asteroid', 'assets/asteroid.png', 50, 50);
-        game.load.image('asteroid_2', 'assets/asteroid.png', 50, 50);
-        game.load.image('asteroid_3', 'assets/asteroid.png', 50, 50);
-        game.load.image('asteroid_4', 'assets/asteroid.png', 50, 50);
-        game.load.image('asteroid_5', 'assets/asteroid.png', 50, 50);
+        game.load.image('asteroids', 'assets/asteroid.png', 50, 50);
         game.load.audio('theme', 'assets/digital_assignment_1_music.mid');
     }
     
     var astronaut;
-    var asteroid;
-    var asteroid_2;
-    var asteroid_3;
-    var asteroid_4;
-    var asteroid_5;
+    var astronaut_up;
+    var astronaut_down;
+    var astronaut_left;
+    var astronaut_right;
     var earth;
     var themeMusic;
+    var loopControl;
+    var asteroids;
+    var countdown;
     
     function create() {
-        // Create a sprite at the center of the screen using the 'logo' image.
+
+
+        game.physics.startSystem(Phaser.Physics.ARCADE);
+        game.physics.arcade.gravity.y = (Math.random()*300);
+        game.physics.arcade.gravity.x = (Math.random()*150);
         earth = game.add.sprite( game.world.centerX, game.world.centerY, 'earth' );
         astronaut = game.add.sprite( game.world.centerX, game.world.centerY, 'astronaut' );
-        asteroid = game.add.sprite( 0, 0, 'asteroid' );
-        asteroid_2 = game.add.sprite( 0, 0, 'asteroid_2' );
-        asteroid_3 = game.add.sprite( 150, 0, 'asteroid_3' );
-        asteroid_4 = game.add.sprite( 0, 150, 'asteroid_4' );
-        asteroid_5 = game.add.sprite( 0, 60, 'asteroid_5' );
-        astronaut.scale.setTo(0.5,0.5);
-        asteroid.scale.setTo(0.125,0.125);
-        asteroid_2.scale.setTo(0.125,0.125);
-        asteroid_3.scale.setTo(0.125,0.125);
-        asteroid_4.scale.setTo(0.125,0.125);
-        asteroid_5.scale.setTo(0.125,0.125);
-        themeMusic = game.add.audio('theme');
-        themeMusic.play();
-        
-        
-
-        
-        // Anchor the sprite at its center, as opposed to its top-left corner.
-        // so it will be truly centered.
         earth.anchor.setTo(0.5, 0.5);
         astronaut.anchor.setTo( 0.5, 0.5 );
-        asteroid.anchor.setTo(0, 0);
-        asteroid_2.anchor.setTo(0, 0.5);
-        asteroid_3.anchor.setTo(0, 0.5);
-        asteroid_4.anchor.setTo(0.5, 0);
-        asteroid_5.anchor.setTo(0.5, 0);
+        astronaut.scale.setTo(0.5,0.5);
+        astronaut_up = game.input.keyboard.addKey(Phaser.Keyboard.UP);
+        astronaut_down = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+        astronaut_right = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+        astronaut_left = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
 
+        countdown = game.time.create(true);
+        countdown.loop((Math.random()*75000));
+        countdown.start();
+        asteroids = game.add.group()
+        asteroids.scale.setTo(0.25,0.25);
+        for(loopControl=0; loopControl<(Math.random()*77); loopControl++)
+        {
+            asteroids.create((Math.random()*1000), (Math.random()*1800), 'asteroids');
+        }
+
+        game.physics.enable([asteroids, astronaut], Phaser.Physics.ARCADE);
+
+
+        themeMusic = game.add.audio('theme');
+        themeMusic.play();
 
         
-        // Turn on the arcade physics engine for this sprite.
-        game.physics.enable( astronaut, Phaser.Physics.ARCADE );
-        game.physics.enable(asteroid, Phaser.Physics.ARCADE);
-        game.physics.enable(asteroid_2, Phaser.Physics.ARCADE);
-        game.physics.enable(asteroid_3, Phaser.Physics.ARCADE);
-        game.physics.enable(asteroid_4, Phaser.Physics.ARCADE);
-        game.physics.enable(asteroid_5, Phaser.Physics.ARCADE);
 
-        astronaut.body.collideWorldBounds = true;
-        asteroid.body.collideWorldBounds = false;
-        asteroid_2.body.collideWorldBounds = false;
-        asteroid_3.body.collideWorldBounds = false;
-        asteroid_4.body.collideWorldBounds = false;
-        asteroid_5.body.collideWorldBounds = false;
-        // Make it bounce off of the world bounds.
-        
-        // Add some text using a CSS style.
-        // Center it in X, and position its top 15 pixels from the top of the world.
-        var style = { font: "25px Times New Roman", fill: "#ffffff", align: "center" };
-        var text = game.add.text( game.world.centerX, 15, "Digital Assignment 1", style );
+        var style = { font: "25px Times New Roman", fill: "#ffffff", align: "right" };
+        var text = game.add.text( 675, 15, "Digital Assignment 1", style );
         text.anchor.setTo( 0.5, 0.0 );
+    }
+
+    function render() 
+    {
+        game.debug.text('Stay on the map and avoid asteroids for: '+ countdown.duration, 32, 32);
+
     }
     
     function update() {
-        // Accelerate the 'logo' sprite towards the cursor,
-        // accelerating at 500 pixels/second and moving no faster than 500 pixels/second
-        // in X or Y.
-        // This function returns the rotation angle that makes it visually match its
-        // new trajectory.
-        astronaut.rotation = game.physics.arcade.accelerateToPointer( astronaut, this.game.input.activePointer, 800, 800, 100 );
-        asteroid.rotation = game.physics.arcade.accelerateToPointer( asteroid, this.game.input.activePointer, 100, 100, (Math.random()*500) );
-        asteroid_2.rotation = game.physics.arcade.accelerateToPointer( asteroid_2, this.game.input.activePointer, (Math.random()*900), 100, (Math.random()*250) );
-        asteroid_3.rotation = game.physics.arcade.accelerateToPointer( asteroid_3, this.game.input.activePointer, 500, (Math.random()*750), 100 );
-        asteroid_4.rotation = game.physics.arcade.accelerateToPointer( asteroid_4, this.game.input.activePointer, (Math.random()*500), 850, 800 );
-        asteroid_5.rotation = game.physics.arcade.accelerateToPointer( asteroid_5, this.game.input.activePointer, (Math.random()*350), 800, 800 );
 
+        if(astronaut_up.isDown) 
+            {
+                astronaut.y-=50;
+            }
+        else if (astronaut_down.isDown) 
+            {
+                astronaut.y+=50;
+            }
+        else if (astronaut_left.isDown) 
+            {
+                astronaut.x-=50;
+            }
+        else if (astronaut_right.isDown) 
+            {
+                astronaut.x+=50;
+            }
+      
     }
 };
