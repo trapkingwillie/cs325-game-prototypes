@@ -28,7 +28,7 @@ window.onload = function() {
     var astronaut_left;
     var astronaut_right;
     var earth;
-    var themeMusic;
+    var theme;
     var loopControl;
     var asteroids;
     var countdown;
@@ -62,8 +62,8 @@ window.onload = function() {
         game.physics.enable([asteroids, astronaut], Phaser.Physics.ARCADE);
 
 
-        themeMusic = game.add.audio('theme');
-        themeMusic.play();
+        theme = game.add.audio('theme');
+        theme.play();
 
         
 
