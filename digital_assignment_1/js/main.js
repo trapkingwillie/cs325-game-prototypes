@@ -122,30 +122,30 @@ window.onload = function() {
             explosion.play();        
         }
 
-        if(astronaut.x>800 && gameOver ===0 && asteroidHit ===0) 
+        if(astronaut.x>800 && gameOver ===0) 
         {
-            game.debug.text('Game Over, you went off the map!', 300, 300);
+            game.debug.text('Game Over, you went off the map!', 300, 450);
             message = 1;
             explosion.play();
         }
 
-        else if (astronaut.x<0 && gameOver ===0 && asteroidHit ===0)
+        else if (astronaut.x<0 && gameOver ===0)
         {
-            game.debug.text('Game Over, you went off the map!', 300, 300);
+            game.debug.text('Game Over, you went off the map!', 300, 450);
             message = 1;
             explosion.play();
         }
 
-        else if(astronaut.y>600 && gameOver ===0 && asteroidHit ===0)
+        else if(astronaut.y>600 && gameOver ===0)
         {
-            game.debug.text('Game Over, you went off the map!', 300, 300);
+            game.debug.text('Game Over, you went off the map!', 300, 450);
             message = 1;
             explosion.play();
         }
 
-        else if (astronaut.y<0 && gameOver ===0 && asteroidHit ===0)
+        else if (astronaut.y<0 && gameOver ===0)
         {
-            game.debug.text('Game Over, you went off the map!', 300, 300);
+            game.debug.text('Game Over, you went off the map!', 300, 450);
             message = 1;
             explosion.play();
         }
