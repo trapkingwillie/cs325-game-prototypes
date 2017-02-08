@@ -22,6 +22,8 @@ window.onload = function() {
         game.load.image('asteroid2', 'assets/asteroid.png', 50, 50);
         game.load.image('asteroid3', 'assets/asteroid.png', 50, 50);
         game.load.audio('theme', 'assets/digital_assignment_1_music.mp3');
+        game.load.audio('applause', 'assets/applause.mp3');
+        game.load.audio('explosion', 'assets/explosion.mp3');
     }
     
     var astronaut;
@@ -44,6 +46,8 @@ window.onload = function() {
     var gameOver = 0;
     var message = 0;
     var asteroidHit = 0;
+    var applause;
+    var explosion;
 
     
     function create() {
@@ -75,7 +79,10 @@ window.onload = function() {
 
         game.physics.enable([asteroid1, asteroid2, asteroid3, astronaut], Phaser.Physics.ARCADE);
         theme = game.add.audio('theme');
+        explosion = game.add.audio('explosion');
+        applause = game.add.audio('applause');
         theme.play();
+
 
         astronaut.body.onCollide = new Phaser.Signal();
         astronaut.body.onCollide.add(asteroidCollision, this);
@@ -111,37 +118,43 @@ window.onload = function() {
 
         if (asteroidHit===1)
         {
-            game.debug.text('Game Over, you hit an asteroid!!', 300, 300);        
+            game.debug.text('Game Over, you hit an asteroid!!', 300, 300);
+            explosion.play();        
         }
 
         if(astronaut.x>800 && gameOver ===0 && asteroidHit ===0) 
         {
             game.debug.text('Game Over, you went off the map!', 300, 300);
             message = 1;
+            explosion.play();
         }
 
         else if (astronaut.x<0 && gameOver ===0 && asteroidHit ===0)
         {
             game.debug.text('Game Over, you went off the map!', 300, 300);
             message = 1;
+            explosion.play();
         }
 
         else if(astronaut.y>600 && gameOver ===0 && asteroidHit ===0)
         {
             game.debug.text('Game Over, you went off the map!', 300, 300);
             message = 1;
+            explosion.play();
         }
 
         else if (astronaut.y<0 && gameOver ===0 && asteroidHit ===0)
         {
             game.debug.text('Game Over, you went off the map!', 300, 300);
             message = 1;
+            explosion.play();
         }
 
 
         if(gameOver ===1 && message === 0 && asteroidHit ===0) 
         {
            game.debug.text('Game Over! You win!', 400, 400);
+           applause.play();
         }
 
     }
