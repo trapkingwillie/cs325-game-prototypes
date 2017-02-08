@@ -48,9 +48,6 @@ window.onload = function() {
     var asteroidHit = 0;
     var applause;
     var explosion;
-    var applause_play = 0;
-    var explosion_play = 0;
-
     
     function create() {
 
@@ -104,11 +101,14 @@ window.onload = function() {
     function asteroidCollision()
     {
         asteroidHit = 1;
+        explosion.play();
     }
 
     function stopTimer()
     {
         gameOver = 1;
+        applause.play();
+
         
     }
 
@@ -121,7 +121,7 @@ window.onload = function() {
         if (asteroidHit===1)
         {
             game.debug.text('Game Over, you hit an asteroid!!', 300, 300);
-            explosion_play = 1;  
+            message = 1;
              
         }
 
@@ -129,7 +129,6 @@ window.onload = function() {
         {
             game.debug.text('Game Over, you went off the map!', 300, 450);
             message = 1;
-            explosion_play = 1;
             
         }
 
@@ -137,42 +136,26 @@ window.onload = function() {
         {
             game.debug.text('Game Over, you went off the map!', 300, 450);
             message = 1;
-            explosion_play = 1;
         }
 
         else if(astronaut.y>600 && gameOver ===0)
         {
             game.debug.text('Game Over, you went off the map!', 300, 450);
             message = 1;
-            explosion_play = 1;
         }
 
         else if (astronaut.y<0 && gameOver ===0)
         {
             game.debug.text('Game Over, you went off the map!', 300, 450);
             message = 1;
-            explosion_play = 1;
         }
 
 
         if(gameOver ===1 && message === 0 && asteroidHit ===0) 
         {
            game.debug.text('Game Over! You win!', 400, 400);
-           applause_play = 1;
-        }
-
-        if(applause_play===1) 
-        {
-            applause.play();
-            applause.mute = true;
-        }
-        if(explosion_play===1)
-        {
-            explosion.play();
-            explosion.mute = true;
-        }
-
     }
+}
     
     function update() {
         
@@ -201,6 +184,8 @@ game.physics.arcade.collide(astronaut, asteroid3);
                 astronaut.x+=50;
             }
         }
+
       
     }
+
 };
