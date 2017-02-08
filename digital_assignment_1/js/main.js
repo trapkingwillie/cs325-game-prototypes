@@ -164,10 +164,12 @@ window.onload = function() {
         if(applause_play===1) 
         {
             applause.play();
+            applause.mute = true;
         }
         if(explosion_play===1)
         {
             explosion.play();
+            explosion.mute = true;
         }
 
     }
