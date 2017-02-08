@@ -48,6 +48,8 @@ window.onload = function() {
     var asteroidHit = 0;
     var applause;
     var explosion;
+    var applause_play = 0;
+    var explosion_play = 0;
 
     
     function create() {
