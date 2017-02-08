@@ -119,7 +119,8 @@ window.onload = function() {
         if (asteroidHit===1)
         {
             game.debug.text('Game Over, you hit an asteroid!!', 300, 300);
-            explosion.play();        
+            explosion.play();    
+            break;    
         }
 
         if(astronaut.x>800 && gameOver ===0) 
@@ -127,6 +128,7 @@ window.onload = function() {
             game.debug.text('Game Over, you went off the map!', 300, 450);
             message = 1;
             explosion.play();
+            break;
         }
 
         else if (astronaut.x<0 && gameOver ===0)
@@ -134,6 +136,7 @@ window.onload = function() {
             game.debug.text('Game Over, you went off the map!', 300, 450);
             message = 1;
             explosion.play();
+            break;
         }
 
         else if(astronaut.y>600 && gameOver ===0)
@@ -141,6 +144,7 @@ window.onload = function() {
             game.debug.text('Game Over, you went off the map!', 300, 450);
             message = 1;
             explosion.play();
+            break;
         }
 
         else if (astronaut.y<0 && gameOver ===0)
@@ -148,6 +152,7 @@ window.onload = function() {
             game.debug.text('Game Over, you went off the map!', 300, 450);
             message = 1;
             explosion.play();
+            break;
         }
 
 
@@ -155,6 +160,7 @@ window.onload = function() {
         {
            game.debug.text('Game Over! You win!', 400, 400);
            applause.play();
+           break;
         }
 
     }
