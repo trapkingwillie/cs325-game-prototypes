@@ -20,6 +20,8 @@ window.onload = function() {
         game.load.image('criminals', 'assets/getaway_car.png', 100, 100);
         game.load.image('city', 'assets/city.png', 50, 50);
         game.load.image('arrest', 'assets/arrest.png', 50, 50);
+        game.load.image('evidence', 'assets/evidence.png', 50, 50);
+        game.load.image('skeleton', 'assets/skeleton.png', 50, 50);
         game.load.audio('door_closing', 'assets/jail_door.mp3');
     }
     
@@ -36,6 +38,10 @@ window.onload = function() {
     var position1 = (Math.random()*100);
     var position2 = (Math.random()*700);
     var arrest_button;
+    var skeleton;
+    var skeleton_pickup;
+    var skeleton_button;
+    var evidence;
     
 
     function create() {
@@ -45,6 +51,7 @@ window.onload = function() {
         city = game.add.sprite( game.world.centerX, game.world.centerY, 'city' );
         city.anchor.setTo(0.5,0.5);
         police = game.add.sprite( game.world.centerX, game.world.centerY, 'police' );
+        skeleton = game.add.sprite( game.world.randomX, game.world.randomY, 'skeleton' );
         criminals = game.add.sprite(position1, position2, 'criminals');
         police_Up = game.input.keyboard.addKey(Phaser.Keyboard.UP);
         police_Down = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
@@ -52,15 +59,18 @@ window.onload = function() {
         police_Left = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
         police.scale.setTo(0.17,0.17);
         criminals.scale.setTo(0.25, 0.25);
+        skeleton.scale.setTo(0.125, 0.125);
         criminals.anchor.set(0);
         game.add.tween(criminals).to( {x: (Math.random()*700), y: (Math.random()*550)}, 20000, Phaser.Easing.Bounce.Out, true);
         game.time.events.add(Phaser.Timer.SECOND*(Math.random()*60), stopTimer, this);
 
-        game.physics.enable([police, criminals], Phaser.Physics.ARCADE);
+        game.physics.enable([police, criminals, skeleton], Phaser.Physics.ARCADE);
 
 
         police.body.onCollide = new Phaser.Signal();
         police.body.onCollide.add(criminalsCaught, this);
+        skeleton.body.onCollide = new Phaser.Signal()
+        skeleton.body.onCollide.add(skeletonFound, this);
 
 
         var style = { font: "25px Times New Roman", fill: "#ffffff", align: "right" };
@@ -75,9 +85,22 @@ window.onload = function() {
         arrest_button.scale.setTo(0.17, 0.17);
     }
 
+        function skeletonFound()
+        {
+        skeleton_button = game.add.button(100, 200, 'evidence', skeleton_button_press, this, 2,1,0);
+       skeleton_button.scale.setTo(0.17, 0.17);
+    }
+
     function triggered_button()
     {
         criminals_arrested = 1;
+        door_closing = game.add.audio('door_closing');
+        door_closing.play();
+    }
+
+        function skeleton_button_press()
+    {
+        skeleton_pickup = 1;
         door_closing = game.add.audio('door_closing');
         door_closing.play();
     }
@@ -93,7 +116,7 @@ window.onload = function() {
         // game.debug.text('You have survived '+iterationsOfCounter+' iterations of this game. Good job!', 32, 56);
         game.debug.text('Catch the criminals! You have until the timer reaches zero. '+game.time.events.duration, 32, 64);
 
-        if (criminals_arrested===1 && gameOver === 0)
+        if (criminals_arrested===1 && skeleton_pickup===1 && gameOver === 0)
         {
             game.debug.text('You caught the criminals before time expired! You got revenge!', 100, 300);
              
@@ -109,6 +132,7 @@ window.onload = function() {
     function update() {
         
         game.physics.arcade.collide(police, criminals);
+        game.physics.arcade.collide(skeleton, police);
 
         if(gameOver === 0 && criminals_arrested ===0) 
         {
