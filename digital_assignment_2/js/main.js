@@ -66,7 +66,7 @@ window.onload = function() {
 
     function criminalsCaught()
     {
-        arrest_button = game.add.button(100, 100, 'arrest', triggered_button, this, 2,1,0);
+        arrest_button = game.add.button(0, 400, 'arrest', triggered_button, this, 2,1,0);
         arrest_button.scale.setTo(0.17, 0.17);
     }
 
@@ -84,7 +84,7 @@ window.onload = function() {
     {
         if(skelFound && skel2Found)
         {
-            skeleton_button = game.add.button(100, 200, 'evidence', skeleton_button_press, this, 2,1,0);
+            skeleton_button = game.add.button(0, 500, 'evidence', skeleton_button_press, this, 2,1,0);
             skeleton_button.scale.setTo(0.17, 0.17);
         }
     }
@@ -97,9 +97,9 @@ window.onload = function() {
         skeleton = game.add.sprite( (Math.random()*600), (Math.random()*350)+20, 'skeleton' );
         skeleton2 = game.add.sprite( (Math.random()*600), (Math.random()*350)+20, 'skeleton2' );
         skeleton3 = game.add.sprite( (Math.random()*600), (Math.random()*300)+20, 'skeleton3' );
-        skeleton.scale.setTo(0.125, 0.125);
-        skeleton2.scale.setTo(0.125, 0.125);
-        skeleton3.scale.setTo(0.125, 0.125);
+        skeleton.scale.setTo(0.25, 0.25);
+        skeleton2.scale.setTo(0.25, 0.25);
+        skeleton3.scale.setTo(0.25, 0.25);
         game.physics.enable([skeleton, skeleton2, skeleton3], Phaser.Physics.ARCADE);
         skeleton.body.onCollide = new Phaser.Signal()
         skeleton.body.onCollide.add(skeletonFound, this);
@@ -127,19 +127,26 @@ window.onload = function() {
 
         if (criminals_arrested===1 && skeleton_pickup===1 && gameOver === 0)
         {
-            game.debug.text('You caught the criminals before time expired! You got revenge!', 100, 500);
+        var winningStyle = { font: "25px Times New Roman", fill: "#000000", align: "center" };
+        var winningText = game.add.text( 100, 300, "You caught the ciminals before time expired! You got revenge!", winningStyle );
+            //game.debug.text('You caught the criminals before time expired! You got revenge!', 100, 500);
              
         }
 
         if(criminals_arrested===0 && gameOver ===1) 
         {
-            game.debug.text('You did not get revenge; the criminals escaped!', 100, 500);
+        var escapeStyle = { font: "25px Times New Roman", fill: "#000000", align: "center" };
+        var escapeText= game.add.text( 100, 300, "You did not get revenge; the criminal escaped!", escapeStyle );
+            //game.debug.text('You did not get revenge; the criminals escaped!', 100, 500);
             
         }
 
         if(gameOver === 1 && skeleton_pickup ===0)
         {
-            game.debug.text('You did not solve the murder mystery.', 100, 550);
+            
+        var lostGameStyle = { font: "25px Times New Roman", fill: "#000000", align: "center" };
+        var lostGameText = game.add.text( 100, 350, "You did not solve the murder mystery.", lostGameStyle );
+            //game.debug.text('You did not solve the murder mystery.', 100, 550);
         }
 }
     
