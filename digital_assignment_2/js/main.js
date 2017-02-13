@@ -51,11 +51,11 @@ window.onload = function() {
         police_Down = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
         police_Right = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
         police_Left = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
-        police.scale.setTo(0.35,0.35);
-        criminals.scale.setTo(0.35, 0.35);
+        police.scale.setTo(0.45,0.45);
+        criminals.scale.setTo(0.45, 0.45);
         criminals.anchor.set(0);
         game.add.tween(criminals).to( {x: (Math.random()*700), y: (Math.random()*550)}, 20000, Phaser.Easing.Bounce.Out, true);
-        game.time.events.add(Phaser.Timer.SECOND*(Math.random()*75), stopTimer, this);
+        game.time.events.add(Phaser.Timer.SECOND*((Math.random()*75)+10), stopTimer, this);
         game.physics.enable([police, criminals], Phaser.Physics.ARCADE);
         police.body.onCollide = new Phaser.Signal();
         police.body.onCollide.add(criminalsCaught, this);
