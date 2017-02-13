@@ -51,8 +51,8 @@ window.onload = function() {
         police_Down = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
         police_Right = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
         police_Left = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
-        police.scale.setTo(0.17,0.17);
-        criminals.scale.setTo(0.25, 0.25);
+        police.scale.setTo(0.35,0.35);
+        criminals.scale.setTo(0.35, 0.35);
         criminals.anchor.set(0);
         game.add.tween(criminals).to( {x: (Math.random()*700), y: (Math.random()*550)}, 20000, Phaser.Easing.Bounce.Out, true);
         game.time.events.add(Phaser.Timer.SECOND*(Math.random()*75), stopTimer, this);
@@ -127,7 +127,7 @@ window.onload = function() {
 
         if (criminals_arrested===1 && skeleton_pickup===1 && gameOver === 0)
         {
-        var winningStyle = { font: "25px Times New Roman", fill: "#000000", align: "center" };
+        var winningStyle = { font: "27px Times New Roman", fill: "blue", align: "center" };
         var winningText = game.add.text( 100, 300, "You caught the ciminals before time expired! You got revenge!", winningStyle );
             //game.debug.text('You caught the criminals before time expired! You got revenge!', 100, 500);
              
@@ -135,7 +135,7 @@ window.onload = function() {
 
         if(criminals_arrested===0 && gameOver ===1) 
         {
-        var escapeStyle = { font: "25px Times New Roman", fill: "#000000", align: "center" };
+        var escapeStyle = { font: "27px Times New Roman", fill: "red", align: "center" };
         var escapeText= game.add.text( 100, 300, "You did not get revenge; the criminal escaped!", escapeStyle );
             //game.debug.text('You did not get revenge; the criminals escaped!', 100, 500);
             
@@ -144,7 +144,7 @@ window.onload = function() {
         if(gameOver === 1 && skeleton_pickup ===0)
         {
             
-        var lostGameStyle = { font: "25px Times New Roman", fill: "#000000", align: "center" };
+        var lostGameStyle = { font: "27px Times New Roman", fill: "red", align: "center" };
         var lostGameText = game.add.text( 100, 350, "You did not solve the murder mystery.", lostGameStyle );
             //game.debug.text('You did not solve the murder mystery.', 100, 550);
         }
