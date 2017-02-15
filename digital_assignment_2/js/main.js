@@ -15,6 +15,7 @@ window.onload = function() {
         game.load.image('skeleton2', 'assets/skeleton.png', 50, 50);
         game.load.image('skeleton3', 'assets/skeleton.png', 50, 50);
         game.load.image('police_station', 'assets/police_station.png', 50, 50);
+        game.load.image('tools_away', 'assets/tools_away.png', 50, 50);
         game.load.audio('door_closing', 'assets/jail_door.mp3');
     }
     
@@ -46,6 +47,8 @@ window.onload = function() {
     var visitedStation = 0;
     var skeletons_created = 0;
     var canArrest = false;
+    var tools_away;
+    var tools;
 
     
 
@@ -84,6 +87,7 @@ window.onload = function() {
     {
         visitedStation = 1;
         canArrest = true;
+        tools = 1;
         game.physics.enable([police, criminals], Phaser.Physics.ARCADE);
         police.body.onCollide = new Phaser.Signal();
         police.body.onCollide.add(criminalsHit, this);
@@ -165,12 +169,19 @@ window.onload = function() {
         }
     }
 
+    function toolsAway()
+    {
+        tools = 0;
+    }
+
     function triggered_button()
     {
 
         criminals_arrested = 1;
         door_closing = game.add.audio('door_closing');
         door_closing.play();
+        tools_away = game.add.button(0, 100, 'tools_away', toolsAway, this, 2,1,0);
+        tools_away.scale.setTo(0.17, 0.17);
         if(skeletons_created===0)
         {
         skeleton = game.add.sprite( (Math.random()*600), (Math.random()*350)+20, 'skeleton' );
@@ -207,7 +218,7 @@ window.onload = function() {
     {
         game.debug.text('Catch the criminals! You have until the timer reaches zero. '+game.time.events.duration, 32, 64);
 
-        if (criminals_arrested===1 && skeleton_pickup===1 && gameOver === 0)
+        if (criminals_arrested===1 && skeleton_pickup===1 && gameOver === 0 && tools === 0)
         {
         var winningStyle = { font: "27px Times New Roman", fill: "blue", align: "center" };
         var winningText = game.add.text( 100, 350, "You caught the ciminals before time expired! You got revenge!", winningStyle );
