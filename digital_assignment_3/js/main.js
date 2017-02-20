@@ -11,6 +11,7 @@ window.onload = function() {
         game.load.image( 'heart', 'assets/heart.png', 150, 150 );
         game.load.image( 'brain', 'assets/brain.png', 150, 150 );
         game.load.image( 'money', 'assets/money.png', 150, 150 );
+        game.load.image( 'realPerson', 'assets/realPerson.png', 150, 150 );
         game.load.image('personMachine', 'assets/personMachine.png', 150, 150);
         game.load.audio('explosion', 'assets/explosion.mp3');
     }
@@ -32,6 +33,9 @@ window.onload = function() {
     var firstCollision = 0;
     var found = false;
     var visitedMachine = false;
+    var chances = 3;
+    var newPerson = false;
+    var realPerson;
     
     function create() {
 
@@ -39,20 +43,22 @@ window.onload = function() {
         game.world.setBounds(0,0,3000, 1500);
         game.physics.startSystem(Phaser.Physics.ARCADE);
         amnesiac_guy = game.add.sprite(0, 1265, 'amnesiac_guy');
-        food = game.add.sprite((Math.random()*1200+25), 1265, 'food');
-        soul = game.add.sprite((Math.random()*1200+30), 1265, 'soul');
-        heart = game.add.sprite((Math.random()*1200+35), 1265, 'heart');
-        brain = game.add.sprite((Math.random()*1200+40), 1265, 'brain');
-        money = game.add.sprite((Math.random()*1200+45), 1265, 'money');
+        food = game.add.sprite((Math.random()*1200+50), 1265, 'food');
+        soul = game.add.sprite((Math.random()*1200+70), 1265, 'soul');
+        heart = game.add.sprite((Math.random()*1200+90), 1265, 'heart');
+        brain = game.add.sprite((Math.random()*1200+110), 1265, 'brain');
+        money = game.add.sprite((Math.random()*1200+130), 1265, 'money');
+        realPerson = game.add.sprite(60, 1265, 'realPerson');
         personMachine = game.add.sprite(3, 1265, 'personMachine');
         amnesiac_guy.scale.setTo(0.175,0.175);
         food.scale.setTo(0.175,0.175);
+        realPerson.scale.setTo(0.10,0.10);
         brain.scale.setTo(0.175,0.175);
         soul.scale.setTo(0.175,0.175);
         money.scale.setTo(0.175,0.175);
         heart.scale.setTo(0.175,0.175);
         personMachine.scale.setTo(0.175, 0.175);
-        game.physics.enable([amnesiac_guy, brain, soul, food, money, heart, personMachine], Phaser.Physics.ARCADE);
+        game.physics.enable([amnesiac_guy, brain, soul, food, money, realPerson, heart, personMachine], Phaser.Physics.ARCADE);
         brain.body.onCollide = new Phaser.Signal();
         brain.body.onCollide.add(brainHit, this);
         heart.body.onCollide = new Phaser.Signal();
@@ -87,46 +93,52 @@ window.onload = function() {
 
     function brainHit()
     {
-        if(firstCollision===0)
+        if(firstCollision===0 && chances>=0)
         {
             firstCollision = 1;
+            chances-=1;
         }
-
     }
 
     function heartHit()
     {
-        if(firstCollision===0)
+        if(firstCollision===0 && chances>=0)
         {
             firstCollision = 2;
+            chances-=1;
         }
 
     }
 
     function soulHit()
     {
-        if(firstCollision===0)
+        if(firstCollision===0 && chances>=0)
         {
             firstCollision = 3;
+            chances-=1;
         }
+
 
     }
 
     function moneyHit()
     {
-        if(firstCollision===0)
+        if(firstCollision===0 && chances>=0)
         {
             firstCollision = 4;
+            chances-=1;
         }
 
     }
 
     function foodHit()
     {
-        if(firstCollision===0)
+        if(firstCollision===0 && chances>=0)
         {
             firstCollision = 5;
+            chances-=1;
         }
+
 
     }
 
@@ -136,6 +148,9 @@ window.onload = function() {
         {
         explosion = game.add.audio('explosion');
         visitedMachine = true;
+        newPerson = true;
+        game.camera.follow(realPerson);
+
 
         }
 
@@ -143,6 +158,7 @@ window.onload = function() {
         {
             found = false;
             firstCollision = 0;
+            
         }
 
         
@@ -151,15 +167,23 @@ window.onload = function() {
 
     function render() 
     {
+        if(chances>0 && found===false)
+        {
+            game.debug.text('You have '+chances+' chances left.', 195, 550);
+        }
+        if(chances===0)
+        {
+            game.debug.text('You lose. Skeltl has forgotten the critical piece.', 195, 550);
+        }
         if(firstCollision===firstPart)
         {
         found = true;
         if(found===true && visitedMachine===true)
-        game.debug.text('You made Chelsea into a real person again!', 195, 525);
+        game.debug.text('You made Skeltl into a real person again!', 195, 525);
         }
 
 
-        if(found===false)
+        if(found===false && chances>=0)
         {
             game.debug.text('You have not found the critical piece yet.', 195, 525);
         }
@@ -177,6 +201,9 @@ window.onload = function() {
         game.physics.arcade.collide(food, amnesiac_guy);
         game.physics.arcade.collide(personMachine, amnesiac_guy);
 
+
+        if(newPerson===false)
+        {
         if(game.input.mousePointer.isDown)
         {
             game.physics.arcade.moveToPointer(amnesiac_guy, 400);
@@ -192,5 +219,23 @@ window.onload = function() {
             amnesiac_guy.body.velocity.setTo(0,0);
         }      
     }
+            if(newPerson===true)
+            {
+            if(game.input.mousePointer.isDown)
+        {
+            game.physics.arcade.moveToPointer(realPerson, 400);
+
+            if(Phaser.Rectangle.contains(realPerson.body, game.input.x, game.input.y))
+            {
+                realPerson.body.velocity.setTo(0,0);
+            }
+        }
+
+        else
+        {
+            realPerson.body.velocity.setTo(0,0);
+        } 
+    }
+}
 
 };
