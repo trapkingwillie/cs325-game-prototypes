@@ -11,6 +11,7 @@ window.onload = function() {
         game.load.image( 'heart', 'assets/heart.png', 150, 150 );
         game.load.image( 'brain', 'assets/brain.png', 150, 150 );
         game.load.image( 'money', 'assets/money.png', 150, 150 );
+        game.load.image( 'home', 'assets/home.png', 150, 150 );
         game.load.image( 'realPerson', 'assets/realPerson.png', 150, 150 );
         game.load.image('personMachine', 'assets/personMachine.png', 150, 150);
         game.load.audio('explosion', 'assets/explosion.mp3');
@@ -36,6 +37,9 @@ window.onload = function() {
     var chances = 3;
     var newPerson = false;
     var realPerson;
+    var home;
+    var backgroundFade;
+    var goneHome = false;
     
     function create() {
 
@@ -43,14 +47,16 @@ window.onload = function() {
         game.world.setBounds(0,0,3000, 1500);
         game.physics.startSystem(Phaser.Physics.ARCADE);
         amnesiac_guy = game.add.sprite(0, 1265, 'amnesiac_guy');
-        food = game.add.sprite((Math.random()*1200+50), 1265, 'food');
-        soul = game.add.sprite((Math.random()*1200+70), 1265, 'soul');
-        heart = game.add.sprite((Math.random()*1200+90), 1265, 'heart');
-        brain = game.add.sprite((Math.random()*1200+110), 1265, 'brain');
-        money = game.add.sprite((Math.random()*1200+130), 1265, 'money');
+        food = game.add.sprite((Math.random()*1200+(Math.random()*50)+10), 1265, 'food');
+        soul = game.add.sprite((Math.random()*1200+(Math.random()*100)+20), 1265, 'soul');
+        heart = game.add.sprite((Math.random()*1200+(Math.random()*150)+30), 1265, 'heart');
+        brain = game.add.sprite((Math.random()*1200+(Math.random()*200)+40), 1265, 'brain');
+        money = game.add.sprite((Math.random()*1200+(Math.random()*250)+50), 1265, 'money');
+        home = game.add.sprite(30, 900, 'home');
         realPerson = game.add.sprite(60, 1265, 'realPerson');
         personMachine = game.add.sprite(3, 1265, 'personMachine');
         amnesiac_guy.scale.setTo(0.175,0.175);
+        home.scale.setTo(0.5,0.5);
         food.scale.setTo(0.175,0.175);
         realPerson.scale.setTo(0.10,0.10);
         brain.scale.setTo(0.175,0.175);
@@ -58,7 +64,7 @@ window.onload = function() {
         money.scale.setTo(0.175,0.175);
         heart.scale.setTo(0.175,0.175);
         personMachine.scale.setTo(0.175, 0.175);
-        game.physics.enable([amnesiac_guy, brain, soul, food, money, realPerson, heart, personMachine], Phaser.Physics.ARCADE);
+        game.physics.enable([amnesiac_guy, brain, soul, food, home, money, realPerson, heart, personMachine], Phaser.Physics.ARCADE);
         brain.body.onCollide = new Phaser.Signal();
         brain.body.onCollide.add(brainHit, this);
         heart.body.onCollide = new Phaser.Signal();
@@ -69,19 +75,19 @@ window.onload = function() {
         money.body.onCollide.add(moneyHit, this);  
         food.body.onCollide = new Phaser.Signal();
         food.body.onCollide.add(foodHit, this);
+        home.body.onCollide = new Phaser.Signal();
+        home.body.onCollide.add(homeHit, this);
         brain.body.immovable = true;
         soul.body.immovable = true;
         food.body.immovable = true;
         heart.body.immovable = true;
         money.body.immovable = true;
+        home.body.immovable = true;
         personMachine.body.immovable = true;
         personMachine.body.onCollide = new Phaser.Signal();
-        personMachine.body.onCollide.add(machineCollision, this)
-
-
+        personMachine.body.onCollide.add(machineCollision, this);
         game.camera.follow(amnesiac_guy);
         explosion = game.add.audio('explosion');
-
 
         var style = { font: "25px Times New Roman", fill: "#ffffff", align: "right" };
         var text = game.add.text( 675, 15, "Amnesia", style );
@@ -91,6 +97,13 @@ window.onload = function() {
 
     }
 
+    function homeHit()
+    {
+        if(newPerson = true)
+        {
+            goneHome = true;
+        }
+    }
     function brainHit()
     {
         if(firstCollision===0 && chances>=0)
@@ -146,7 +159,7 @@ window.onload = function() {
     {
         if(found===true)
         {
-        explosion = game.add.audio('explosion');
+        explosion.play();
         visitedMachine = true;
         newPerson = true;
         game.camera.follow(realPerson);
@@ -178,10 +191,9 @@ window.onload = function() {
         if(firstCollision===firstPart)
         {
         found = true;
-        if(found===true && visitedMachine===true)
-        game.debug.text('You made Skeltl into a real person again!', 195, 525);
+        if(found===true && visitedMachine===true && goneHome===true)
+        game.debug.text('You made Skeltl into a real person again, and he went home!', 150, 525);
         }
-
 
         if(found===false && chances>=0)
         {
@@ -200,6 +212,7 @@ window.onload = function() {
         game.physics.arcade.collide(money, amnesiac_guy);
         game.physics.arcade.collide(food, amnesiac_guy);
         game.physics.arcade.collide(personMachine, amnesiac_guy);
+        game.physics.arcade.collide(realPerson, home);
 
 
         if(newPerson===false)
@@ -219,7 +232,7 @@ window.onload = function() {
             amnesiac_guy.body.velocity.setTo(0,0);
         }      
     }
-            if(newPerson===true)
+            if(newPerson===true && goneHome===false)
             {
             if(game.input.mousePointer.isDown)
         {
