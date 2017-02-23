@@ -95,7 +95,7 @@ window.onload = function() {
         explosion = game.add.audio('explosion');
 
         var style = { font: "25px Times New Roman", fill: "#ffffff", align: "right" };
-        var text = game.add.text( 675, 15, "Amnesia", style );
+        var text = game.add.text( 675, 15, "ComradeSleltl: Amnesiac Desperado", style );
         text.anchor.setTo( 0.5, 0.0 );
         
 
