@@ -40,6 +40,11 @@ window.onload = function() {
     var home;
     var backgroundFade;
     var goneHome = false;
+    var brained = false;
+    var hearted = false;
+    var moneyed = false;
+    var fooded = false;
+    var souled = false;
     
     function create() {
 
@@ -106,29 +111,35 @@ window.onload = function() {
     }
     function brainHit()
     {
-        if(firstCollision===0 && chances>=0)
+
+        if(firstCollision===0 && chances>=0 && brained===false)
         {
             firstCollision = 1;
             chances-=1;
+            brained = true;
         }
     }
 
     function heartHit()
     {
-        if(firstCollision===0 && chances>=0)
+
+        if(firstCollision===0 && chances>=0 && hearted===false)
         {
             firstCollision = 2;
             chances-=1;
+            hearted = true;
         }
 
     }
 
     function soulHit()
     {
-        if(firstCollision===0 && chances>=0)
+
+        if(firstCollision===0 && chances>=0 && souled===false)
         {
             firstCollision = 3;
             chances-=1;
+            souled = true;
         }
 
 
@@ -136,20 +147,24 @@ window.onload = function() {
 
     function moneyHit()
     {
-        if(firstCollision===0 && chances>=0)
+
+        if(firstCollision===0 && chances>=0 && moneyed === false)
         {
             firstCollision = 4;
             chances-=1;
+            moneyed = true;
         }
 
     }
 
     function foodHit()
     {
-        if(firstCollision===0 && chances>=0)
+
+        if(firstCollision===0 && chances>=0 && fooded===false)
         {
             firstCollision = 5;
             chances-=1;
+            fooded = true;
         }
 
 
@@ -159,10 +174,10 @@ window.onload = function() {
     {
         if(found===true)
         {
-        explosion.play();
         visitedMachine = true;
         newPerson = true;
         game.camera.follow(realPerson);
+        explosion.play();
 
 
         }
@@ -172,14 +187,41 @@ window.onload = function() {
             found = false;
             firstCollision = 0;
             
-        }
-
-        
+        }       
 
     }
 
     function render() 
     {
+        //brain, heart, soul, money, food
+
+
+        
+        if(firstPart ===1)
+        {
+            game.debug.text('Mr. Skeltl will go crazy if he doesnt go home soon...', 195, 100);
+
+        }
+        if(firstPart===2)
+        {
+            game.debug.text('Skeletons are notoriously cold-blooded...', 195, 100);
+
+        }
+        if(firstPart===3)
+        {
+            game.debug.text('The last thing to leave a human before they become skeltl...', 195, 100);
+
+        }
+        if(firstPart===4)
+        {
+            game.debug.text('Being a human can be expensive...', 195, 100);
+
+        }
+        if(firstPart===5)
+        {
+            game.debug.text('Skeletons get hungry, too...', 195, 100);
+
+        }
         if(chances>0 && found===false)
         {
             game.debug.text('You have '+chances+' chances left.', 195, 550);
@@ -195,10 +237,10 @@ window.onload = function() {
         game.debug.text('You made Skeltl into a real person again, and he went home!', 150, 525);
         }
 
-        if(found===false && chances>=0)
-        {
-            game.debug.text('You have not found the critical piece yet.', 195, 525);
-        }
+        // if(found===false && chances>=0)
+        // {
+        //     game.debug.text('You have not found the critical piece yet.', 195, 525);
+        // }
 
 
  
@@ -219,7 +261,7 @@ window.onload = function() {
         {
         if(game.input.mousePointer.isDown)
         {
-            game.physics.arcade.moveToPointer(amnesiac_guy, 400);
+            game.physics.arcade.moveToPointer(amnesiac_guy, 650);
 
             if(Phaser.Rectangle.contains(amnesiac_guy.body, game.input.x, game.input.y))
             {
@@ -236,7 +278,7 @@ window.onload = function() {
             {
             if(game.input.mousePointer.isDown)
         {
-            game.physics.arcade.moveToPointer(realPerson, 400);
+            game.physics.arcade.moveToPointer(realPerson, 650);
 
             if(Phaser.Rectangle.contains(realPerson.body, game.input.x, game.input.y))
             {
