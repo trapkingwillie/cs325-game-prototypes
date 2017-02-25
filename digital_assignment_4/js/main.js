@@ -53,9 +53,9 @@ window.onload = function() {
             game.time.events.add(Phaser.Timer.SECOND * 60, failedDiffusal, this);
             redButton = game.add.button(250, 550, 'red', redWireButton, this, 2, 1, 0);
             redButton.scale.setTo(0.5, 0.5);
-            blueButton = game.add.button(400, 550, 'blue', greenWireButton, this, 2, 1, 0);
+            blueButton = game.add.button(400, 550, 'blue', blueWireButton, this, 2, 1, 0);
             blueButton.scale.setTo(0.5, 0.5);
-            greenButton = game.add.button(550, 550, 'green', blueWireButton, this, 2, 1, 0);
+            greenButton = game.add.button(550, 550, 'green', greenWireButton, this, 2, 1, 0);
             greenButton.scale.setTo(0.5, 0.5);
 
 
@@ -102,8 +102,11 @@ window.onload = function() {
 
     function failedDiffusal()
     {
+        if(diffused===false)
+        {
         explosion.play()
         failed = true;
+    }
 
     }
 
@@ -113,73 +116,124 @@ window.onload = function() {
         if(bombDiffusalAttempt===true)
         {
             //the solution to the equation equals the letter in the message corresponding to a button.
+            if(diffused===false && failed===false)
+            {
             game.debug.text('Diffuse the bomb in: '+game.time.events.duration, 32, 64);
             if(messageNumber===1&& failed===false)
             {
             game.debug.text('Message: Rarely good boys behave badly', 32, 96);
             game.debug.text('Filter: (x^2-1)', 32, 114);
-            button = 'red';
+            button = 'red';//good
             }
             if(messageNumber===2&& failed===false)
             {
             game.debug.text('Message: Bog readily grows beards', 32, 96);
             game.debug.text('Filter: (x^2-9x+18)', 32, 114);
-            button = 'green';
+            button = 'green';//good
             }
             if(messageNumber===3&& failed===false)
             {
             game.debug.text('Message: Great booming grasshoppers read', 32, 96);
             game.debug.text('Filter: (x^2-36)', 32, 114);
-            button = 'blue';
+            button = 'blue';//good
             }
             if(messageNumber===4 && failed===false)
             {
             game.debug.text('Message: Really bad groupies rave', 32, 96);
-            game.debug.text('Filter: (x^4-20+4)', 32, 114);
-            button = 'blue';
+            game.debug.text('Filter: (x^2-7x)', 32, 114);
+            button = 'blue';//good
             }
             if(messageNumber===5&& failed===false)
             {
             game.debug.text('Message: Trees are people too', 32, 96);
             game.debug.text('Filter: (x^5-20x+8)', 32, 114);
-            button = 'red';
+            button = 'red';//good
             }
             if(messageNumber===6 && failed===false)
             {
             game.debug.text('Message: Animals are people too', 32, 96);
-            game.debug.text('Filter: (x^100-150x+50)', 32, 114);
-            button = 'red';
+            game.debug.text('Filter: (x(x)-81)', 32, 114);
+            button = 'red';//good
             }
             if(messageNumber===7 && failed===false)
             {
             game.debug.text('Message: Recycling garbage rules', 32, 96);
-            game.debug.text('Filter: (x^3-27+3x-9)', 32, 114);
-            button = 'green';
+            game.debug.text('Filter: (x^2-9x+8-8)', 32, 114);
+            button = 'green';//good
             }
             if(messageNumber===8 && failed===false)
             {
             game.debug.text('Message: Good motives, bad actions', 32, 96);
-            game.debug.text('Filter: (x^2-9+4276x^0-1)', 32, 114);
-            button = 'green';
+            game.debug.text('Filter: (x^2-9x+9x-1)', 32, 114);
+            button = 'green';//good
             }
             if(messageNumber===9 && failed===false)
             {
             game.debug.text('Message: Boom! Goes the dynamite.', 32, 96);
-            game.debug.text('Filter: (x^7-64x+32-x^5)', 32, 114);
-            button = 'blue;'
+            game.debug.text('Filter: (x^7-x^5-x^3-x)', 32, 114);
+            button = 'blue;'//good
             }
             if(messageNumber===10 && failed===false)
             {
             game.debug.text('Message: Better run fast, polluter', 32, 96);
-            game.debug.text('Filter: ln(2)-2x+2', 32, 114);
+            game.debug.text('Filter: (6x-36)', 32, 114);
             button = 'red';
             }
             if(messageNumber===11 && failed ===false)
             {
             game.debug.text('Message: Explosions are fun', 32, 96);
-            game.debug.text('Filter: (x^99+243x-242)', 32, 114);
-            button = 'red';
+            game.debug.text('Filter: (x^2-144)', 32, 114);
+            button = 'red';//good
             }
+            if(messageNumber===12 && failed===false)
+            {
+               game.debug.text('Message: ', 32, 96);
+               game.debug.text('Filter: ', 32, 114);
+               button = 'green'; 
+
+            }
+            if(messageNumber===13 && failed===false)
+            {
+                //fill these in
+
+            }
+            if(messageNumber===14 && failed===false)
+            {
+
+            }
+            if(messageNumber===15 && failed===false)
+            {
+
+            }
+            if(messageNumber===16 && failed===false)
+            {
+
+            }
+            if(messageNumber===17 && failed===false)
+            {
+
+            }
+            if(messageNumber===17 && failed===false)
+            {
+
+            }
+            if(messageNumber===18 && failed===false)
+            {
+
+            }
+            if(messageNumber===19 && failed===false)
+            {
+
+            }
+            if(messageNumber===20 && failed===false)
+            {
+
+            }
+            if(messageNumber===21 && failed===false)
+            {
+
+            }
+        }
 
 
         }
