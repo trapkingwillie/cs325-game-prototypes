@@ -187,50 +187,79 @@ window.onload = function() {
             }
             if(messageNumber===12 && failed===false)
             {
-               game.debug.text('Message: ', 32, 96);
-               game.debug.text('Filter: ', 32, 114);
+               game.debug.text('Message: All good things must end', 32, 96);
+               game.debug.text('Filter: (x^3-64)', 32, 114);
                button = 'green'; 
 
             }
             if(messageNumber===13 && failed===false)
             {
-                //fill these in
+               game.debug.text('Message: The organization must be stopped', 32, 96);
+               game.debug.text('Filter: (x^2-25)', 32, 114);
+               button = 'red'; 
 
             }
             if(messageNumber===14 && failed===false)
             {
+               game.debug.text('Message: Smog is terrible for the environment.', 32, 96);
+               game.debug.text('Filter: (x^2-16+4x-x^2)', 32, 114);
+               button = 'green'; 
 
             }
             if(messageNumber===15 && failed===false)
             {
+               game.debug.text('Message: Forests must be saved.', 32, 96);
+               game.debug.text('Filter: (x^2-x^3+18)', 32, 114);
+               button = 'red'; 
 
             }
             if(messageNumber===16 && failed===false)
             {
+               game.debug.text('Message: We are the ecoterrorists.', 32, 96);
+               game.debug.text('Filter: (x^2-(14)^3+14)', 32, 114);
+               button = 'red'; 
 
             }
             if(messageNumber===17 && failed===false)
             {
+               game.debug.text('Message: Next target - your refineries', 32, 96);
+               game.debug.text('Filter: (x^2-64)', 32, 114);
+               button = 'green'; 
 
             }
             if(messageNumber===17 && failed===false)
             {
+               game.debug.text('Message: The refinery will be hit at noon', 32, 96);
+               game.debug.text('Filter: ((x^2-16)+(4y-16)); X and Y are equal', 32, 114);
+               button = 'red'; 
 
             }
             if(messageNumber===18 && failed===false)
             {
+               game.debug.text('Message: Future generations will thank us', 32, 96);
+               game.debug.text('Filter: (x^2-25)', 32, 114);
+               button = 'green'; 
 
             }
             if(messageNumber===19 && failed===false)
             {
+               game.debug.text('Message: Be aware of environmental damage.', 32, 96);
+               game.debug.text('Filter: The slope of the line y=x', 32, 114);
+               button = 'blue'; 
 
             }
             if(messageNumber===20 && failed===false)
             {
+               game.debug.text('Message: By our hands, the environment will be saved.', 32, 96);
+               game.debug.text('Filter: ((x^3-1)(Y^3-1)); X and Y are equal', 32, 114);
+               button = 'blue'; 
 
             }
             if(messageNumber===21 && failed===false)
             {
+               game.debug.text('Message: The only way to fix carelessness is action', 32, 96);
+               game.debug.text('Filter: (x-18)', 32, 114);
+               button = 'red'; 
 
             }
         }
