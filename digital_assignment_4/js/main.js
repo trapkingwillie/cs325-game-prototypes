@@ -10,6 +10,7 @@ window.onload = function() {
         game.load.image( 'blue', 'assets/blueButton.png', 150, 150 );
         game.load.image( 'green', 'assets/greenButton.png', 150, 150 );
         game.load.audio('explosion', 'assets/explosion.mp3');
+        game.load.audio('timer', 'assets/ticking.mp3');
     }
     
     var landscape;
@@ -24,6 +25,7 @@ window.onload = function() {
     var letter;
     var button;
     var diffused = false;
+    var timer;
 
     
     function create() {
@@ -33,6 +35,7 @@ window.onload = function() {
         bomb = game.add.button(670, 425, 'bomb', bombDiffusal, this, 2, 1, 0);
         bomb.scale.setTo(1, 1);
         explosion = game.add.audio('explosion');
+        timer = game.add.audio('timer');
 
         // var style = { font: "25px Times New Roman", fill: "#ffffff", align: "right" };
         // var text = game.add.text( 675, 15, "EOD: Ecoterrorism Prevention", style );
@@ -118,6 +121,7 @@ window.onload = function() {
             //the solution to the equation equals the letter in the message corresponding to a button.
             if(diffused===false && failed===false)
             {
+                timer.play();
             game.debug.text('Diffuse the bomb in: '+game.time.events.duration, 32, 64);
             if(messageNumber===1&& failed===false)
             {
@@ -269,12 +273,13 @@ window.onload = function() {
         if(failed===true && diffused===false)
         {
             game.debug.text('You fail; game over.', 32, 132);
+            timer.mute = true;
 
         }
         if(diffused===true && failed===false)
         {
             game.debug.text('You win - the rainforest is saved!', 32, 132);
-
+            timer.mute = true;
         }
 
     }
