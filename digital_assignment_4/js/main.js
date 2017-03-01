@@ -23,7 +23,7 @@ window.onload = function() {
     var bombDiffusalAttempt = false;
     var explosion;
     var failed = false;
-    var messageNumber = Math.floor(Math.random()*12);
+    var messageNumber = Math.floor(Math.random()*32);
     var letter;
     var button;
     var diffused = false;
@@ -275,6 +275,76 @@ window.onload = function() {
             {
                game.debug.text('Message: The only way to fix carelessness is action', 32, 96);
                game.debug.text('Filter: (x-18)=0', 32, 114);
+               button = 'red'; 
+
+            }
+            if(messageNumber===22 && failed===false)
+            {
+               game.debug.text('Message: Conservation is critical', 32, 96);
+               game.debug.text('Filter: (x-6)=0', 32, 114);
+               button = 'red'; 
+
+            }
+            if(messageNumber===23 && failed===false)
+            {
+               game.debug.text('Message: Better solve the riddle', 32, 96);
+               game.debug.text('Filter: (x-9+8)=0', 32, 114);
+               button = 'blue'; 
+
+            }
+            if(messageNumber===24 && failed===false)
+            {
+               game.debug.text('Message: Save the rainforest', 32, 96);
+               game.debug.text('Filter: (x(x)-64)=0', 32, 114);
+               button = 'red'; 
+
+            }
+            if(messageNumber===25 && failed===false)
+            {
+               game.debug.text('Message: Good environments are critical', 32, 96);
+               game.debug.text('Filter: (x^75-1)=0', 32, 114);
+               button = 'green'; 
+
+            }
+            if(messageNumber===26 && failed===false)
+            {
+               game.debug.text('Message: Green grass, tall trees, harmony', 32, 96);
+               game.debug.text('Filter: (x-16)=0', 32, 114);
+               button = 'red'; 
+
+            }
+            if(messageNumber===27 && failed===false)
+            {
+               game.debug.text('Message: Be better to the environment', 32, 96);
+               game.debug.text('Filter: (x-32+12-19)', 32, 114);
+               button = 'blue'; 
+
+            }
+            if(messageNumber===28 && failed===false)
+            {
+               game.debug.text('Message: Cut the green wire', 32, 96);
+               game.debug.text('Filter: (x-8)=0', 32, 114);
+               button = 'red'; 
+
+            }
+            if(messageNumber===29 && failed===false)
+            {
+               game.debug.text('Message: Cut the blue wire', 32, 96);
+               game.debug.text('Filter: (x^2-169)=0', 32, 114);
+               button = 'red'; 
+
+            }
+            if(messageNumber===30 && failed===false)
+            {
+               game.debug.text('Message: Cut the red wire, before you die', 32, 96);
+               game.debug.text('Filter: (x^2-(14^2))=0', 32, 114);
+               button = 'blue'; 
+
+            }
+            if(messageNumber===31 && failed===false)
+            {
+               game.debug.text('Message: You are going to fail', 32, 96);
+               game.debug.text('Filter: (x^3-125)=0', 32, 114);
                button = 'red'; 
 
             }
