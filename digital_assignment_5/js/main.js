@@ -17,9 +17,13 @@ window.onload = function() {
         game.load.image('caesar', 'assets/caesar.png', 150, 150);
         game.load.image('mathGuy', 'assets/mathGuy.png', 150, 150);
         game.load.image('paper', 'assets/paper.png', 150, 150);
+        game.load.image('blackBackground', 'assets/blackBackground.jpg', 150, 150);
+        game.load.image('newLandscape', 'assets/landscape.jpg', 150, 150);
         game.load.audio('explosion', 'assets/explosion.mp3');
         game.load.audio('timer', 'assets/ticking.mp3');
         game.load.audio('snip', 'assets/snip.mp3');
+        game.load.audio('win', 'assets/win.mp3');
+        game.load.audio('lose', 'assets/lose.mp3');
     }
     //multiple 'levels', with bombs corresponding to the level. Mutiple means of diffusing the bombs, with some the are time sensitive. More (better) sound effects, with an emphasis on winning and losing 
     //(the events and sound effects that occur when one wins/loses).
@@ -56,6 +60,12 @@ window.onload = function() {
     var paperVariable = Math.floor(Math.random()*10000);
     var hint = false;
     var noShowHint = false;
+    var newLandscape;
+    var blackBackground;
+    var caesar2;
+    var mathGuy2;
+    var win;
+    var lose;
 
     function create() {
 
@@ -64,11 +74,6 @@ window.onload = function() {
         bomb = game.add.button(100, 310, 'bomb', bombDiffusal, this, 2, 1, 0);
         bomb2 = game.add.button(415, 310, 'bomb2', bomb2Diffusal, this, 2, 1, 0);
         caesar = game.add.button(620, 310, 'caesar', help, this, 2, 1, 0);
-        if(paperVariable %2===0 || paperVariable%3===0)
-        {
-        paper = game.add.button((Math.random()*500)+200, (Math.random()*400)+200, 'paper', hintGiven, this, 2, 1, 0);
-        paper.scale.setTo(0.05, 0.05);
-    }
         caesar.scale.setTo(0.5, 0.5);
         mathGuy = game.add.button(10, 300, 'mathGuy', mathHelp, this, 2, 1, 0);
         mathGuy.scale.setTo(0.19, 0.19);
@@ -77,6 +82,8 @@ window.onload = function() {
         explosion = game.add.audio('explosion');
         timer = game.add.audio('timer');
         snip = game.add.audio('snip');
+        win = game.add.audio('win');
+        lose = game.add.audio('lose');
 
     }
 
@@ -135,14 +142,39 @@ window.onload = function() {
         hint = false;
     }
 
+    function addBlackBackground()//on explosion, do this
+    {
+        blackBackground = game.add.sprite(0,0, 'blackBackground');
+        blackBackground.scale.setTo(0.63,0.68);
+        //insert lose music
+        lose.play();
+
+    }
+
+    function addNewForest()//on win, do this
+    {
+        newLandscape = game.add.sprite(0,0,'newLandscape');
+        caesar2 = game.add.button(620, 310, 'caesar', help, this, 2, 1, 0);
+        caesar2.scale.setTo(0.5, 0.5);
+        mathGuy2 = game.add.button(10, 300, 'mathGuy', mathHelp, this, 2, 1, 0);
+        mathGuy2.scale.setTo(0.19, 0.19);
+        //insert win music
+        win.play();
+    }
+
     function bomb2Diffusal()//used for bomb2
     {
         if(bombDiffusalAttempt===true)
         {
+            if(paperVariable %2===0 || paperVariable%3===0)
+                {
+                    paper = game.add.button(400, 220, 'paper', hintGiven, this, 2, 1, 0);
+                    paper.scale.setTo(0.05, 0.05);
+                }
         bomb2DiffusalAttempt = true;
         helpRequired = false;
         mathHelpRequired = false;
-    }
+        }
     }
 
     function greenWireButton()
@@ -684,12 +716,14 @@ window.onload = function() {
         {
             game.debug.text('You fail; game over.', 32, 114);
             timer.mute = true;
+            addBlackBackground();
 
         }
         if(diffused===true && diffused2===true && failed===false)
         {
             game.debug.text('You win - the rainforest is saved!', 32, 114);
             timer.mute = true;
+            addNewForest();
         }
 
     }
