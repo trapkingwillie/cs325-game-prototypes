@@ -58,14 +58,23 @@ window.onload = function() {
     var mathGuy;
     var paper;
     var paperVariable = Math.floor(Math.random()*10000);
+    var hintPaper1 = Math.floor(Math.random()*10000);
+    var hintPaper2 = Math.floor(Math.random()*10000);
     var hint = false;
     var noShowHint = false;
+    var noShowHint2 = false;
+    var noShowHint3 = false;
     var newLandscape;
     var blackBackground;
     var caesar2;
     var mathGuy2;
     var win;
     var lose;
+    var paper2;
+    var paper3;
+    var hint2 = false;
+    var hint3 = false;
+    var otherHint = 0;
 
     function create() {
 
@@ -95,15 +104,51 @@ window.onload = function() {
 
     function hintGiven()
     {
-        if(noShowHint===false)
+        if(noShowHint===false && otherHint===0)
         {
         hint = true;
-        game.time.events.add(Phaser.Timer.SECOND * 0.5, hintTimer, this);
+        game.time.events.add(Phaser.Timer.SECOND * 1.5, hintTimer, this);
         noShowHint=true;
         helpRequired = false;
         mathHelpRequired = false;
+        otherHint+=1;
+        hint2 = false;
+        hint3 = false;
+        }
+        
     }
+
+    function hintGiven2()
+    {
+        if(noShowHint2===false && otherHint===0)
+        {
+        hint2 = true;
+        game.time.events.add(Phaser.Timer.SECOND * 1.5, hintTimer2, this);
+        noShowHint2=true;
+        helpRequired = false;
+        mathHelpRequired = false;
+        otherHint+=1;
+        hint = false;
+        hint3 = false;
+        }
     }
+
+    function hintGiven3()
+    {
+        if(noShowHint3===false && otherHint===0)
+        {
+        hint3 = true;
+        game.time.events.add(Phaser.Timer.SECOND * 1.5, hintTimer3, this);
+        noShowHint3=true;
+        helpRequired = false;
+        mathHelpRequired = false;
+        otherHint+=1;
+        hint = false;
+        hint2=false;
+        }
+        
+    }
+
 
     function mathHelp()
     {
@@ -115,31 +160,31 @@ window.onload = function() {
             bombDiffusalAttempt = true;
             helpRequired = false;
             mathHelpRequired = false;
-            if(hint===false)
-            {
-            game.time.events.add(Phaser.Timer.SECOND * 120, failedDiffusal, this);
-            }
-            table = game.add.sprite(-20, 450, 'table');
-            table.scale.setTo(1.75, 0.75);
-            redButton = game.add.button(160, 515, 'red', redWireButton, this, 2, 1, 0);
-            redButton.scale.setTo(0.45, 0.45);
-            blueButton = game.add.button(230, 515, 'blue', blueWireButton, this, 2, 1, 0);
-            blueButton.scale.setTo(0.38, 0.38);
-            greenButton = game.add.button(300, 515, 'green', greenWireButton, this, 2, 1, 0);
-            greenButton.scale.setTo(0.45, 0.45);
-            robot = game.add.button(400, 525, 'robot', robotButton, this, 2, 1, 0);
-            robot.scale.setTo(0.045, 0.045);
-            water = game.add.button(500, 535, 'water', waterButton, this, 2, 1, 0);
-            water.scale.setTo(0.030, 0.030);
-            battery = game.add.button(600, 540, 'battery', batteryButton, this, 2, 1, 0);
-            battery.scale.setTo(0.09, 0.09);
-            timer.loop = true;
-            timer.play();
+            // if(hint===false)
+            // {
+            // game.time.events.add(Phaser.Timer.SECOND * 120, failedDiffusal, this);
+            // }
     }
 
     function hintTimer()
     {
         hint = false;
+        hint2 = false;
+        hint3 = false;
+    }
+
+    function hintTimer2()
+    {
+        hint = false;
+        hint2 = false;
+        hint3 = false;;
+    }
+
+    function hintTimer3()
+    {
+        hint = false;
+        hint2 = false;
+        hint3 = false;
     }
 
     function addBlackBackground()//on explosion, do this
@@ -164,17 +209,40 @@ window.onload = function() {
 
     function bomb2Diffusal()//used for bomb2
     {
-        if(bombDiffusalAttempt===true)
-        {
-            if(paperVariable %2===0 || paperVariable%3===0)
+            if(paperVariable%7===0)
                 {
                     paper = game.add.button(400, 220, 'paper', hintGiven, this, 2, 1, 0);
                     paper.scale.setTo(0.05, 0.05);
                 }
+            if(hintPaper1%2===0)
+                {
+                    paper2 = game.add.button(250, 145, 'paper', hintGiven2, this, 2, 1, 0);
+                    paper2.scale.setTo(0.05, 0.05);
+                }
+            if(hintPaper2%3===0)
+                {
+                    paper3 = game.add.button(200, 170, 'paper', hintGiven3, this, 2, 1, 0);
+                    paper3.scale.setTo(0.05, 0.05);
+                }
         bomb2DiffusalAttempt = true;
         helpRequired = false;
         mathHelpRequired = false;
-        }
+        table = game.add.sprite(-20, 450, 'table');
+        table.scale.setTo(1.75, 0.75);
+        redButton = game.add.button(160, 515, 'red', redWireButton, this, 2, 1, 0);
+        redButton.scale.setTo(0.45, 0.45);
+        blueButton = game.add.button(230, 515, 'blue', blueWireButton, this, 2, 1, 0);
+        blueButton.scale.setTo(0.38, 0.38);
+        greenButton = game.add.button(300, 515, 'green', greenWireButton, this, 2, 1, 0);
+        greenButton.scale.setTo(0.45, 0.45);
+        robot = game.add.button(400, 525, 'robot', robotButton, this, 2, 1, 0);
+        robot.scale.setTo(0.045, 0.045);
+        water = game.add.button(500, 535, 'water', waterButton, this, 2, 1, 0);
+        water.scale.setTo(0.030, 0.030);
+        battery = game.add.button(600, 540, 'battery', batteryButton, this, 2, 1, 0);
+        battery.scale.setTo(0.09, 0.09);
+        timer.loop = true;
+        timer.play();
     }
 
     function greenWireButton()
@@ -274,17 +342,29 @@ window.onload = function() {
 
     function render() 
     {
-        if(hint===true && (bombDiffusalAttempt===true && bomb2DiffusalAttempt===true))
+        if(otherHint===1)
+        {
+        if((hint===true) &&(bombDiffusalAttempt===true && bomb2DiffusalAttempt===true))
         {
             game.debug.text('Your hint is: '+button+button2, 32, 20);
         }
-        if(helpRequired===true && mathHelpRequired===false && (bombDiffusalAttempt===false || bomb2DiffusalAttempt===false))
+        if((hint2===true) && (bombDiffusalAttempt===true && bomb2DiffusalAttempt===true))
+        {
+            game.debug.text('Your hint is: '+button, 32, 20);
+        }
+    
+        if((hint3===true) && (bombDiffusalAttempt===true && bomb2DiffusalAttempt===true))
+        {
+            game.debug.text('Your hint is: '+button2, 32, 20);
+        }
+    }
+        if(helpRequired===true && mathHelpRequired===false && (bombDiffusalAttempt===false && bomb2DiffusalAttempt===false))
         {
             game.debug.text('A Caesar Cipher requires the message to be moved forwards in the alphabet,', 5,20);
             game.debug.text('based upon the number. For instance, ROT1 of "hi" is "ij".', 5, 35);
         }
 
-        if(mathHelpRequired===true && helpRequired===false && (bombDiffusalAttempt===false || bomb2DiffusalAttempt===false))
+        if(mathHelpRequired===true && helpRequired===false && (bombDiffusalAttempt===false && bomb2DiffusalAttempt===false))
         {
             game.debug.text('In order to solve the first equation, find a value,', 5,20);
             game.debug.text('for X that allows the equation to equal zero - i.e., (x-2)=0 -> X=2', 5, 35);
@@ -292,10 +372,11 @@ window.onload = function() {
         if(bombDiffusalAttempt===true && bomb2DiffusalAttempt===true)
         {
             //the solution to the equation equals the letter in the message corresponding to a button.
-            if((diffused===false || diffused2===false) && failed===false)
+            if(failed===false && (diffused===false || diffused2===false))
             {
-              if(hint ===false)
+              if(hint===false && hint2===false && hint3===false)
                 {  
+                    game.time.events.add(Phaser.Timer.SECOND * 120, failedDiffusal, this);
                     game.debug.text('Diffuse the bombs in: '+game.time.events.duration, 32, 64);
                 }
             if((messageNumber===1 || messageNumber===0)&& failed===false)
@@ -350,7 +431,7 @@ window.onload = function() {
             {
             game.debug.text('Message: Boom! Goes the dynamite.', 32, 96);
             game.debug.text('Filter: (x^7-x^5-x^3-x)=0', 32, 114);
-            button = 'blue;'//good
+            button = 'blue'//good
             }
             if(messageNumber===10 && failed===false)
             {
