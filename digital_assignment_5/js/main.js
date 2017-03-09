@@ -362,12 +362,16 @@ window.onload = function() {
         {
             game.debug.text('A Caesar Cipher requires the message to be moved forwards in the alphabet,', 5,20);
             game.debug.text('based upon the number. For instance, ROT1 of "hi" is "ij".', 5, 35);
+            game.debug.text('Solve the equation to obtain the ROT value, and apply this cipher to the second messag', 5, 50);
+            game.debug.text('to determine the defusal tool - the name of the requisite tool will be apparent.', 5, 65);
         }
 
         if(mathHelpRequired===true && helpRequired===false && (bombDiffusalAttempt===false && bomb2DiffusalAttempt===false))
         {
-            game.debug.text('In order to solve the first equation, find a value,', 5,20);
-            game.debug.text('for X that allows the equation to equal zero - i.e., (x-2)=0 -> X=2', 5, 35);
+            game.debug.text('In order to solve the first equation, find a value for X that', 5,20);
+            game.debug.text('allows the equation to equal zero - i.e., (x-2)=0 -> X=2.', 5, 35);
+            game.debug.text('Once this value is obtained, locate the letter corresponding to that X value.', 5, 50);
+            game.debug.text('When X=1, the word "go" will yield "g"; cut the wire with the same first letter (green wire).', 5, 65);
         }
         if(bombDiffusalAttempt===true && bomb2DiffusalAttempt===true)
         {
