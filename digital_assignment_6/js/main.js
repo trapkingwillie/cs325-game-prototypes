@@ -390,13 +390,13 @@ window.onload = function() {
             if(failed===true)
         {
             game.debug.text('You fail; game over.', 32, 96);
-            laugh.play();
+
 
         }
         if(saved ===true && failed===false)
         {
             game.debug.text('You win - the VIP is saved!', 32, 96);
-            ding.play();
+
 
         }
 
