@@ -19,7 +19,7 @@ window.onload = function() {
         game.load.image( 'cnn', 'assets/cnn.png', 150, 150 );//bad guy 2
 
 
-        game.load.audio('laugh', 'assets/laugh.mp3');//phaser gun sound
+
         game.load.audio('ding', 'assets/ding.mp3');//gameplay music
         game.load.audio('background', 'assets/background.mp3');//winning music
         // game.load.audio('lose', 'assets/lose.mp3');//losing music
@@ -179,7 +179,7 @@ window.onload = function() {
     {
       failed = true;
       background.mute = true;
-      laugh.play();
+      
     }
 
     function render()
@@ -201,7 +201,7 @@ window.onload = function() {
             if(questionNumber===2&& failed===false)
             {
             game.debug.text('What event caused the Great Depression?', 32, 32);
-            game.debug.text('A: None, B: Wall Street Crash of 1929, C: WWII, D: Cold War, E: Clinton Trial', 32, 64);
+            game.debug.text('A: None, B: Wall Street Crash of 1929, C: WWII, D: Cold War, E: WWII', 32, 64);
             button = 'B';//good
             }
             if(questionNumber===3&& failed===false)
@@ -219,13 +219,13 @@ window.onload = function() {
             if(questionNumber===5&& failed===false)
             {
             game.debug.text('What event started the US Civil War?', 32, 32);
-            game.debug.text('A: None, B: Spanish War, C: Sinking of Lusitania, D: WWI, E: Attack on Ft. Sumter', 32, 64);
+            game.debug.text('A: None, B: Spanish War, C: WWII, D: WWI, E: Attack on Ft. Sumter', 32, 64);
             button = 'E';//good
             }
             if(questionNumber===6 && failed===false)
             {
             game.debug.text('What speech initiated the freeing of slaves in the US?', 32, 32);
-            game.debug.text('A: Emancipation Proclamation, B: US Address, C: USA Address, D: None, E: FTS Address', 32, 64);
+            game.debug.text('A: Emancipation Proclamation, B: US Address, C: USA Address, D: None, E: FTS', 32, 64);
             button = 'A';//good
             }
             if(questionNumber===7 && failed===false)
@@ -282,7 +282,7 @@ window.onload = function() {
             if(questionNumber===15 && failed===false)
             {
                game.debug.text('In response to the creation of NATO, the USSR created the _____', 32, 32);
-               game.debug.text('A: Communist Pact, B: USSR Alliance, C: None, D: Stalin Paper, E: Warsaw Pact', 32, 64);
+               game.debug.text('A: Communist Pact, B: USSP, C: None, D: Stalin Paper, E: Warsaw Pact', 32, 64);
                button = 'E'; 
 
             }
@@ -317,7 +317,7 @@ window.onload = function() {
             if(questionNumber===19 && failed===false)
             {
                game.debug.text('Obamacare is also known as:', 32, 32);
-               game.debug.text('A: AFA, B: EIO, C: ELO, D: AAA, E: Patient Protection and Affordable Care Act', 32, 32);
+               game.debug.text('A: AFA, B: EIO, C: ELO, D: AAA, E: Affordable Care Act', 32, 64);
                button = 'E'; 
 
             }
@@ -374,7 +374,7 @@ window.onload = function() {
             if(questionNumber===27 && failed===false)
             {
                game.debug.text('In what year did the US declare war on Germany (WWI)?', 32, 32);
-               game.debug.text('A: 1911, B: 1912, C: 1913, D: 1916, E: 1917', 32, 32);
+               game.debug.text('A: 1911, B: 1912, C: 1913, D: 1916, E: 1917', 32, 64);
                button = 'E'; 
 
             }
