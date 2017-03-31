@@ -73,6 +73,7 @@ window.onload = function() {
 
     function guardsComing()
     {
+        background.mute = true;
         buzzer.play();
         failed = true;
     }
