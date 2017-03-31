@@ -67,8 +67,6 @@ window.onload = function() {
         buzzer = game.add.audio('buzzer');
         background = game.add.audio('background');
         background.play();
-        background.loop = true;
-
     }
 
     function guardsComing()
@@ -199,16 +197,17 @@ window.onload = function() {
 
     function failedAction()
     {
-        failed= true;
-        background.mute = true;
+    background.mute = true;
+    failed= true;
     }
 
     function render()
     {
     if(failed===true && success===false)
     {
-    game.debug.text('You fail; game over.', 32, 96);
     background.mute = true;
+    game.debug.text('You fail; game over.', 32, 96);
+    
     //lose sound
     }
     if(questionsAnswered===2 && failed===false)
@@ -422,7 +421,6 @@ window.onload = function() {
                button = 'right_s'; 
         }
     }
-    background.mute = true;
 
     }
 
