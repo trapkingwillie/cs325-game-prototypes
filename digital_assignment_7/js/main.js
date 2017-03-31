@@ -71,7 +71,6 @@ window.onload = function() {
 
     function guardsComing()
     {
-        background.mute = true;
         failed = true;
     }
 
@@ -196,7 +195,6 @@ window.onload = function() {
 
     function failedAction()
     {
-    background.mute = true;
     failed= true;
     }
 
@@ -211,9 +209,10 @@ window.onload = function() {
     }
     if(questionsAnswered===2 && failed===false)
     {
+        background.mute = true;
         game.debug.text('You and your partner escaped!', 32, 96);
         success = true;
-        background.mute = true;
+        
         //win sound
     }
       if(failed===false && questionsAnswered<=1)
