@@ -418,6 +418,11 @@ window.onload = function() {
                game.debug.text('wll hi', 32, 32);
                button = 'right_s'; 
         }
+            if(questionNumber===35 && failed===false)
+            {
+               game.debug.text('wtr fct', 32, 32);
+               button = 'sink'; 
+        }
     }
 
     }
