@@ -422,6 +422,7 @@ window.onload = function() {
                button = 'right_s'; 
         }
     }
+    background.mute = true;
 
     }
 
