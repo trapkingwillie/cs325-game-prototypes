@@ -207,6 +207,7 @@ window.onload = function() {
     if(failed===true && success===false)
     {
     game.debug.text('You fail; game over.', 32, 96);
+    background.mute = true;
     //lose sound
     }
     if(questionsAnswered===2 && failed===false)
