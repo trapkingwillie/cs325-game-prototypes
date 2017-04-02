@@ -203,7 +203,7 @@ window.onload = function() {
     if(failed===true && success===false)
     {
     background.mute = true;
-    game.debug.text('You fail; game over.', 32, 96);
+    game.debug.text('You were discovered! 25 days in solitary confinement!', 32, 96);
     
     //lose sound
     }
