@@ -13,7 +13,7 @@ window.onload = function() {
         game.load.image('right_s', 'assets/box.png', 150, 150);
         game.load.image('left_s', 'assets/box.png', 150, 150);
         game.load.image('solitary', 'assets/solitary.jpg', 150, 150);
-        game.load.image('escape', 'assets/escape.jpg', 150, 150);
+        game.load.image('escaped', 'assets/escape.jpg', 150, 150);
 
 
 
@@ -45,7 +45,7 @@ window.onload = function() {
     var guardsComing;
     var success = false;
     var solitary;
-    var escape;
+    var escaped;
 
 
 
@@ -230,8 +230,8 @@ window.onload = function() {
         background.mute = true;
         game.debug.text('You and your partner escaped!', 32, 96);
         success = true;
-        escape = game.add.sprite(0,0,'escape');
-        escape.scale.setTo(0.6, 0.5);
+        escaped = game.add.sprite(0,0,'escaped');
+        escaped.scale.setTo(0.6, 0.5);
 
         
         //win sound
