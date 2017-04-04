@@ -13,7 +13,7 @@ window.onload = function() {
         game.load.image('right_s', 'assets/box.png', 150, 150);
         game.load.image('left_s', 'assets/box.png', 150, 150);
         game.load.image('solitary', 'assets/solitary.jpg', 150, 150);
-        game.load.image('escaped', 'assets/escape.jpg', 150, 150);
+        game.load.image('escaped', 'assets/escape.png', 150, 150);
 
 
 
