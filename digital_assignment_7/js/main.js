@@ -52,7 +52,7 @@ window.onload = function() {
     
     function create() {
 
-        game.time.events.add(Phaser.Timer.SECOND*(AI_number), guardsComing, this);
+        game.time.events.add(Phaser.Timer.SECOND*(AI_number), failedAction, this);
         jail = game.add.sprite(0,0,'jail');
         toilet = game.add.button(250, 85, 'toilet', toilet_button, this, 2, 1, 0);
         toilet.scale.setTo(0.175, 0.175);
@@ -77,7 +77,7 @@ window.onload = function() {
     function guardsComing()
     {
         failed = true;
-        buzzer.play();
+
     }
 
 
@@ -201,6 +201,7 @@ window.onload = function() {
 
     function failedAction()
     {
+    buzzer.play();
     failed= true;
 
     }
