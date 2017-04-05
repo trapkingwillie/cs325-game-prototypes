@@ -34,7 +34,7 @@ window.onload = function() {
     var right_s;
     var left_s;
     var questionNumber = Math.floor(Math.random()*35+1);
-    var AI_number = Math.floor(Math.random()*35+15);
+    var AI_number = Math.floor(Math.random()*50+15);
     var saved = false;
     var failed = false;
     var ding;
@@ -55,9 +55,9 @@ window.onload = function() {
         game.time.events.add(Phaser.Timer.SECOND*(AI_number), failedAction, this);
         jail = game.add.sprite(0,0,'jail');
         toilet = game.add.button(250, 85, 'toilet', toilet_button, this, 2, 1, 0);
-        toilet.scale.setTo(0.175, 0.175);
+        toilet.scale.setTo(0.12, 0.12);
         sink = game.add.button(150, 260, 'sink', sink_button, this, 2, 1, 0);
-        sink.scale.setTo(0.175, 0.175);
+        sink.scale.setTo(0.12, 0.12);
         bars = game.add.button(800, 260, 'bars', bars_button, this, 2, 1, 0);
         bars.scale.setTo(0.175, 0.175);
         bed = game.add.button(720, 100, 'bed', bed_button, this, 2, 1, 0);
@@ -66,8 +66,8 @@ window.onload = function() {
         pillow.scale.setTo(0.10, 0.10);
         right_s = game.add.button(610, 380, 'right_s', right_shelf, this, 2, 1, 0);
         left_s = game.add.button(470, 350, 'left_s', left_shelf, this, 2, 1, 0);
-        right_s.scale.setTo(0.175, 0.175);
-        left_s.scale.setTo(0.175, 0.175);
+        right_s.scale.setTo(0.12, 0.12);
+        left_s.scale.setTo(0.12, 0.12);
         ding = game.add.audio('ding');
         buzzer = game.add.audio('buzzer');
         background = game.add.audio('background');
@@ -526,7 +526,7 @@ window.onload = function() {
                game.debug.text('wash your dishes tonight', 32, 32);
                button = 'sink'; 
         }
-}
+
                     if(questionNumber===51 && failed===false)
             {
                game.debug.text('do ur business', 32, 32);
