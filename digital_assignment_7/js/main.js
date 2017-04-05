@@ -446,6 +446,127 @@ window.onload = function() {
                game.debug.text('wtr fct', 32, 32);
                button = 'sink'; 
         }
+                    if(questionNumber===37 && failed===false)
+            {
+               game.debug.text('flapper', 32, 32);
+               button = 'toilet'; 
+
+            }
+            if(questionNumber===38 && failed===false)
+            {
+               game.debug.text('ly ur hed back', 32, 32);
+               button = 'pillow'; 
+
+            }
+            if(questionNumber===39 && failed===false)
+            {
+               game.debug.text('8 hours a night', 32, 32);
+               button = 'bed'; 
+
+            }
+            if(questionNumber===40 && failed===false)
+            {
+               game.debug.text('pig iron', 32, 32);
+               button = 'bars'; 
+
+            }
+            if(questionNumber===41 && failed===false)
+            {
+               game.debug.text('left turn', 32, 32);
+               button = 'left_s'; 
+
+            }
+            if(questionNumber===42 && failed===false)
+            {
+               game.debug.text('right turn', 32, 32);
+               button = 'right_s'; 
+        }
+            if(questionNumber===43 && failed===false)
+            {
+               game.debug.text('hot n cold', 32, 32);
+               button = 'sink'; 
+        }
+                    if(questionNumber===44 && failed===false)
+            {
+               game.debug.text('running flush', 32, 32);
+               button = 'toilet'; 
+
+            }
+            if(questionNumber===45 && failed===false)
+            {
+               game.debug.text('face down', 32, 32);
+               button = 'pillow'; 
+
+            }
+            if(questionNumber===46 && failed===false)
+            {
+               game.debug.text('lots of covers, cold night', 32, 32);
+               button = 'bed'; 
+
+            }
+            if(questionNumber===47 && failed===false)
+            {
+               game.debug.text('no privacy, see through door', 32, 32);
+               button = 'bars'; 
+
+            }
+            if(questionNumber===48 && failed===false)
+            {
+               game.debug.text('opposite of right 4x', 32, 32);
+               button = 'left_s'; 
+
+            }
+            if(questionNumber===49 && failed===false)
+            {
+               game.debug.text('opposite of left 4x', 32, 32);
+               button = 'right_s'; 
+        }
+            if(questionNumber===50 && failed===false)
+            {
+               game.debug.text('wash your dishes tonight', 32, 32);
+               button = 'sink'; 
+        }
+}
+                    if(questionNumber===51 && failed===false)
+            {
+               game.debug.text('do ur business', 32, 32);
+               button = 'toilet'; 
+
+            }
+            if(questionNumber===52 && failed===false)
+            {
+               game.debug.text('facetime down', 32, 32);
+               button = 'pillow'; 
+
+            }
+            if(questionNumber===53 && failed===false)
+            {
+               game.debug.text('make it well', 32, 32);
+               button = 'bed'; 
+
+            }
+            if(questionNumber===54 && failed===false)
+            {
+               game.debug.text('slam', 32, 32);
+               button = 'bars'; 
+
+            }
+            if(questionNumber===55 && failed===false)
+            {
+               game.debug.text('opposite of correct shelf', 32, 32);
+               button = 'left_s'; 
+
+            }
+            if(questionNumber===56 && failed===false)
+            {
+               game.debug.text('correct shelf', 32, 32);
+               button = 'right_s'; 
+        }
+            if(questionNumber===57 && failed===false)
+            {
+               game.debug.text('clean water', 32, 32);
+               button = 'sink'; 
+        }
     }
 
     }
