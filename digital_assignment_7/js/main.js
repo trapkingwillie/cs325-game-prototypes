@@ -33,7 +33,7 @@ window.onload = function() {
     var pillow;
     var right_s;
     var left_s;
-    var questionNumber = Math.floor(Math.random()*28+1);
+    var questionNumber = Math.floor(Math.random()*35+1);
     var AI_number = Math.floor(Math.random()*35+15);
     var saved = false;
     var failed = false;
@@ -77,6 +77,7 @@ window.onload = function() {
     function guardsComing()
     {
         failed = true;
+        buzzer.play();
     }
 
 
