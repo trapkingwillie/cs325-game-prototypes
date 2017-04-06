@@ -83,7 +83,7 @@ window.onload = function() {
 
         function toilet_button()
     {
-        if(button==='toilet')
+        if(button==='toilet') 
         {
             questionsAnswered+=1;
             questionNumber+=7;
