@@ -567,9 +567,9 @@ window.onload = function() {
                game.debug.text('clean water', 32, 32);
                button = 'sink'; 
         }
-    }
 
     }
+}
 
 
 
