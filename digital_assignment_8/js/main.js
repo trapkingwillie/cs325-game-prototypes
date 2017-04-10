@@ -12,7 +12,7 @@ window.onload = function() {
         game.load.image('pillow', 'assets/box.png', 150, 150);
         game.load.image('right_s', 'assets/box.png', 150, 150);
         game.load.image('left_s', 'assets/box.png', 150, 150);
-        game.load.image('solitary', 'assets/solitary.jpg', 150, 150);
+        game.load.image('solitary', 'assets/solitary.gif', 150, 150);
         game.load.image('escaped', 'assets/escape.png', 150, 150);
         game.load.image('initial', 'assets/initial.png', 150, 150);//payphone scene
         game.load.image('phone', 'assets/box.png', 150, 150);//payphone icon
@@ -278,10 +278,11 @@ window.onload = function() {
     if(failed===true && success===false && splash === false)
     {
     background.mute = true;
-    game.debug.text('You were discovered! 25 days in solitary confinement!', 32, 96);
+    game.debug.text('Player 2:', 32, 32);
+    game.debug.text('You were discovered! 25 days in solitary confinement!', 32, 64);
     solitary = game.add.sprite(0,0,'solitary');
-    solitary.scale.setTo(0.65, 0.70);
-    replay = game.add.button (425, 400, 'replay', replayAction, this, 2, 1, 0);
+    solitary.scale.setTo(0.65, 0.87);
+    replay = game.add.button (25, 450, 'replay', replayAction, this, 2, 1, 0);
     replay.scale.setTo(0.15, 0.15);
     
     //lose sound
@@ -299,10 +300,11 @@ window.onload = function() {
     if(questionsAnswered===3 && failed===false && splash===false)
     {
         background.mute = true;
-        game.debug.text('You escaped!', 32, 96);
+        game.debug.text('Player 2:', 32, 32);
+        game.debug.text('You escaped!', 32, 64);
         success = true;
         escaped = game.add.sprite(0,0,'escaped');
-        escaped.scale.setTo(0.6, 0.5);
+        escaped.scale.setTo(1, 1);
         replay = game.add.button (25, 450, 'replay', replayAction, this, 2, 1, 0);
         replay.scale.setTo(0.15, 0.15);
 
@@ -311,11 +313,13 @@ window.onload = function() {
     }
     if(displayRiddle===false && failed===false && success===false && splash === false)
     {
-    game.debug.text('Guards will arrive in: '+AI_number+' seconds.', 32, 64);
+    game.debug.text('Player 2:', 32, 16);
+    game.debug.text('Guards will arrive in: '+AI_number+' seconds.', 32, 32);
 
     }
       if(failed===false && displayRiddle===true)
       {
+        game.debug.text('Player 1:', 32, 16);
       if((questionNumber===1 || questionNumber===0) && failed===false)
             {
             game.debug.text('snk ur teeth n2 this', 32, 32);
