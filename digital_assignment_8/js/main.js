@@ -62,6 +62,7 @@ window.onload = function() {
     var loading;
     var splashScreen;
     var splash = true;
+    var buzzerCount = 0;
 
 
 
@@ -116,6 +117,7 @@ window.onload = function() {
 
     function replayAction()
     {
+        buzzerCount = 0;
         questionsAnswered = 0;
         failed = false;
         escaped = false;
@@ -268,8 +270,12 @@ window.onload = function() {
 
     function failedAction()
     {
+    if(buzzerCount===0)
+    {
     buzzer.play();
     failed= true;
+    buzzerCount+=1;
+    }
 
     }
 
