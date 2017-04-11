@@ -329,158 +329,158 @@ window.onload = function() {
       if((questionNumber===1 || questionNumber===0) && failed===false)
             {
             game.debug.text('snk ur teeth n2 this', 32, 32);
-            game.debug.text('food not sitting well', 32, 48);
-            game.debug.text('food not sitting well', 32, 64);
+            game.debug.text('iron', 32, 48);
+            game.debug.text('feathers', 32, 64);
             button1 = 'sink';//good
-            button2 = 'toilet';
-            button3 = 'toilet';
+            button2 = 'bars';
+            button3 = 'pillow';
 
             }
             if(questionNumber===2&& failed===false)
             {
-            game.debug.text('food not sitting well', 32, 32);
-            game.debug.text('feathers', 32, 48);
-            game.debug.text('feathers', 32, 64);
-            button1 = 'toilet';//good
-            button2 = 'pillow';
-            button3 = 'pillow';
+            game.debug.text('locked door', 32, 32);
+            game.debug.text('mattress', 32, 48);
+            game.debug.text('hot water', 32, 64);
+            button1 = 'bars';//good
+            button2 = 'bed';
+            button3 = 'sink';
             }
             if(questionNumber===3&& failed===false)
             {
-            game.debug.text('feathers', 32, 32);
-            game.debug.text('early day tmrw', 32, 48);
-            game.debug.text('early day tmrw', 32, 64);
-            button1 = 'pillow';//good
-            button2 = 'bed';
-            button3 = 'bed';
+            game.debug.text('turn left 4 times', 32, 32);
+            game.debug.text('turn right 4 times', 32, 48);
+            game.debug.text('lay your head', 32, 64);
+            button1 = 'right_s';//good
+            button2 = 'left_s';
+            button3 = 'pillow';
             }
             if(questionNumber===4 && failed===false)
             {
-            game.debug.text('early day tmrw', 32, 32);
-            game.debug.text('all drs lkkd', 32, 48);
-            game.debug.text('all drs lkkd', 32, 64);
-            button1 = 'bed';//good
-            button2 = 'bars';
+            game.debug.text('soft head', 32, 32);
+            game.debug.text('out of soap', 32, 48);
+            game.debug.text('rusty iron', 32, 64);
+            button1 = 'pillow';//good
+            button2 = 'sink';
             button3 = 'bars';
             }
             if(questionNumber===5&& failed===false)
             {
-            game.debug.text('all drs lkkd', 32, 32);
-            game.debug.text('if ur nt right, ur...', 32, 48);
-            game.debug.text('if ur nt right, ur...', 32, 64);
-            button1 = 'bars';//good
-            button2 = 'left_s';
-            button3 = 'left_s';
+            game.debug.text('1 gallon per flush', 32, 32);
+            game.debug.text('clank', 32, 48);
+            game.debug.text('cold water', 32, 64);
+            button1 = 'toilet';//good
+            button2 = 'bars';
+            button3 = 'sink';
             }
             if(questionNumber===6 && failed===false)
             {
-            game.debug.text('if ur nt right, ur...', 32, 32);
-            game.debug.text('if ur not wrong, ur...', 32, 48);
-            game.debug.text('if ur not wrong, ur...', 32, 64);
-            button1 = 'left_s';//good
+            game.debug.text('spigot', 32, 32);
+            game.debug.text('not wrong', 32, 48);
+            game.debug.text('not right', 32, 64);
+            button1 = 'sink';//good
             button2 = 'right_s';
-            button3 = 'right_s';
+            button3 = 'left_s';
             }
             if(questionNumber===7 && failed===false)
             {
-            game.debug.text('if ur not wrong, ur...', 32, 32);
-            game.debug.text('wsh_ur_hndz', 32, 48);
-            game.debug.text('wsh_ur_hndz', 32, 64);
-            button1 = 'right_s';//good
-            button2 = 'sink';
-            button3 = 'sink';
+            game.debug.text('head', 32, 32);
+            game.debug.text('sheetz', 32, 48);
+            game.debug.text('le**', 32, 64);
+            button1 = 'pillow';//good
+            button2 = 'bed';
+            button3 = 'left_s';
             }
             if(questionNumber===8 && failed===false)
             {
-            game.debug.text('wsh_ur_hndz', 32, 32);
-            game.debug.text('too much sauce', 32, 48);
+            game.debug.text('correct', 32, 32);
+            game.debug.text('linens', 32, 48);
             game.debug.text('too much sauce', 32, 64);
-            button1 = 'sink';//good
-            button2 = 'toilet';
+            button1 = 'right_s';//good
+            button2 = 'bed';
             button3 = 'toilet';
             }
             if(questionNumber===9 && failed===false)
             {
-            game.debug.text('too much sauce', 32, 32);
-            game.debug.text('lay ur hd dwn', 32, 48);
-            game.debug.text('lay ur hd dwn', 32, 64);
+            game.debug.text('no privacy flush', 32, 32);
+            game.debug.text('correct shelf', 32, 48);
+            game.debug.text('fluffy', 32, 64);
             button1 = 'toilet';//good
-            button2 = 'pillow';
+            button2 = 'right_s';
             button3 = 'pillow';
             }
             if(questionNumber===10 && failed===false)
             {
-            game.debug.text('lay ur hd dwn', 32, 32);
-            game.debug.text('clean sheets', 32, 48);
-            game.debug.text('clean sheets', 32, 64);
+            game.debug.text('tpp of bed', 32, 32);
+            game.debug.text('old iron', 32, 48);
+            game.debug.text('nap time', 32, 64);
             button1 = 'pillow';
-            button2 = 'bed';
+            button2 = 'bars';
             button3 = 'bed';
             }
             if(questionNumber===11 && failed ===false)
             {
-            game.debug.text('clean sheets', 32, 32);
-            game.debug.text('clank', 32, 48);
-            game.debug.text('clank', 32, 64);
+            game.debug.text('8 hours a night', 32, 32);
+            game.debug.text('dirty paws', 32, 48);
+            game.debug.text('keepin u in', 32, 64);
             button1 = 'bed';//good
-            button2 = 'bars';
+            button2 = 'sink';
             button3 = 'bars;'
             }
             if(questionNumber===12 && failed===false)
             {
-               game.debug.text('clank', 32, 32);
-               game.debug.text('turn right 4 times', 32, 48);
-               game.debug.text('turn right 4 times', 32, 64);
+               game.debug.text('no freedom, cant leave', 32, 32);
+               game.debug.text('hand makes an L', 32, 48);
+               game.debug.text('hand does not make an L', 32, 64);
                button1 = 'bars'; 
                button2 = 'left_s';
-               button3 = 'left_s';
+               button3 = 'right_s';
 
             }
             if(questionNumber===13 && failed===false)
             {
-               game.debug.text('turn right 4 times', 32, 32);
-               game.debug.text('turn left 4 times', 32, 48);
-               game.debug.text('turn left 4 times', 32, 64);
+               game.debug.text('wrong wrong wrong', 32, 32);
+               game.debug.text('good answers are ___', 32, 48);
+               game.debug.text('need a key', 32, 64);
                button1 = 'left_s'; 
                button2 = 'right_s';
-               button3 = 'right_s';
+               button3 = 'bars';
 
             }
             if(questionNumber===14 && failed===false)
             {
-               game.debug.text('turn left 4 times', 32, 32);
-               game.debug.text('out of soap', 32, 48);
-               game.debug.text('out of soap', 32, 64);
+               game.debug.text('higher shelf', 32, 32);
+               game.debug.text('2 knobs', 32, 48);
+               game.debug.text('lower shelf', 32, 64);
                button1 = 'right_s';
                button2 = 'sink'; 
-               button3 = 'sink';
+               button3 = 'left_s';
 
             }
             if(questionNumber===15 && failed===false)
             {
-               game.debug.text('out of soap', 32, 32);
-               game.debug.text('flush', 32, 48);
-               game.debug.text('flush', 32, 64);
+               game.debug.text('scrub ur face', 32, 32);
+               game.debug.text('indigestion', 32, 48);
+               game.debug.text('top job putting shelves in', 32, 64);
                button1 = 'sink'; 
                button2 = 'toilet';
-               button3 = 'toilet';
+               button3 = 'right_s';
 
             }
             if(questionNumber===16 && failed===false)
             {
-               game.debug.text('flush', 32, 32);
+               game.debug.text('dispose of evidence in ___', 32, 32);
                game.debug.text('plw fight', 32, 48);
-               game.debug.text('plw fight', 32, 64);
+               game.debug.text('two pipes', 32, 64);
                button1 = 'toilet'; 
                button2 = 'pillow';
-               button3 = 'pillow';
+               button3 = 'sink';
 
             }
             if(questionNumber===17 && failed===false)
             {
-               game.debug.text('plw fight', 32, 32);
-               game.debug.text('nap tm', 32, 48);
-               game.debug.text('ur on th right trk', 32, 64)
+               game.debug.text('___case', 32, 32);
+               game.debug.text('sleep tight', 32, 48);
+               game.debug.text('put things up higher', 32, 64)
                button1 = 'pillow'; 
                button2 = 'bed';
                button3 = 'right_s';
