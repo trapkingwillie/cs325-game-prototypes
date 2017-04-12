@@ -163,7 +163,7 @@ window.onload = function() {
         sink.scale.setTo(0.12, 0.12);
         bars = game.add.button(850, 260, 'bars', bars_button, this, 2, 1, 0);
         bars.scale.setTo(0.05, 0.1);
-        bed = game.add.button(670, 100, 'bed', bed_button, this, 2, 1, 0);
+        bed = game.add.button(500, 75, 'bed', bed_button, this, 2, 1, 0);
         bed.scale.setTo(0.2, 0.08);
         pillow = game.add.button(430, 100, 'pillow', pillow_button, this, 2, 1, 0);
         pillow.scale.setTo(0.10, 0.10);
@@ -342,14 +342,21 @@ bed.inputEnabled = false;
         }
     if(failed===true && success===false && splash === false)
     {
+                toilet.destroy();
+        bed.destroy();
+        left_s.destroy();
+        right_s.destroy();
+        pillow.destroy();
+        bars.destroy();
+        sink.destroy();
 
     background.mute = true;
     game.debug.text('Player 2:', 32, 32);
     game.debug.text('You were discovered! 25 days in solitary confinement!', 32, 64);
     solitary = game.add.sprite(0,0,'solitary');
     solitary.scale.setTo(0.65, 0.87);
-    replay = game.add.button (25, 450, 'replay', replayAction, this, 2, 1, 0);
-    replay.scale.setTo(0.15, 0.15);
+    //replay = game.add.button (25, 450, 'replay', replayAction, this, 2, 1, 0);
+    //replay.scale.setTo(0.15, 0.15);
     
     //lose sound
     }
@@ -365,14 +372,21 @@ bed.inputEnabled = false;
     // }
     if(questionsAnswered===3 && failed===false && splash===false)
     {
+        toilet.destroy();
+        bed.destroy();
+        left_s.destroy();
+        right_s.destroy();
+        pillow.destroy();
+        bars.destroy();
+        sink.destroy();
         background.mute = true;
         game.debug.text('Player 2:', 32, 32);
         game.debug.text('You escaped!', 32, 64);
         success = true;
         escaped = game.add.sprite(0,0,'escaped');
         escaped.scale.setTo(1, 1);
-        replay = game.add.button (25, 450, 'replay', replayAction, this, 2, 1, 0);
-        replay.scale.setTo(0.15, 0.15);
+        //replay = game.add.button (25, 450, 'replay', replayAction, this, 2, 1, 0);
+        //replay.scale.setTo(0.15, 0.15);
 
         
         //win sound
@@ -470,7 +484,7 @@ bed.inputEnabled = false;
             }
             if(questionNumber===10 && failed===false)
             {
-            game.debug.text('tpp of bed', 32, 32);
+            game.debug.text('head of bed', 32, 32);
             game.debug.text('old iron', 32, 48);
             game.debug.text('nap time', 32, 64);
             button1 = 'pillow';
@@ -544,6 +558,112 @@ bed.inputEnabled = false;
                button1 = 'pillow'; 
                button2 = 'bed';
                button3 = 'right_s';
+
+            }
+
+            if(questionNumber===18 && failed===false)
+            {
+            game.debug.text('turn a knob', 32, 32);
+            game.debug.text('lower shelf', 32, 48);
+            game.debug.text('locks', 32, 64);
+            button1 = 'sink';//good
+            button2 = 'left_s';
+            button3 = 'bars';
+            }
+            if(questionNumber===19 && failed===false)
+            {
+            game.debug.text('slammer', 32, 32);
+            game.debug.text('hot n cold', 32, 48);
+            game.debug.text('stomach bubbles', 32, 64);
+            button1 = 'bars';//good
+            button2 = 'sink';
+            button3 = 'toilet';
+            }
+            if(questionNumber===20 && failed===false)
+            {
+            game.debug.text('on high', 32, 32);
+            game.debug.text('faucet', 32, 48);
+            game.debug.text('on the bed', 32, 64);
+            button1 = 'right_s';//good
+            button2 = 'sink';
+            button3 = 'pillow';
+            }
+            if(questionNumber===21 && failed===false)
+            {
+            game.debug.text('sink in to the mattress', 32, 32);
+            game.debug.text('vertical and horizontal iron', 32, 48);
+            game.debug.text('ice cold water', 32, 64);
+            button1 = 'bed';
+            button2 = 'bars';
+            button3 = 'sink';
+            }
+            if(questionNumber===22 && failed ===false)
+            {
+            game.debug.text('left for dead', 32, 32);
+            game.debug.text('you got it right away', 32, 48);
+            game.debug.text('the titanic ___ after it hit the ice berg', 32, 64);
+            button1 = 'left_s';//good
+            button2 = 'right_s';
+            button3 = 'sink;'
+            }
+            if(questionNumber===23 && failed===false)
+            {
+               game.debug.text('boats with damage ____', 32, 32);
+               game.debug.text('key part of jail', 32, 48);
+               game.debug.text('facetime', 32, 64);
+               button1 = 'sink'; 
+               button2 = 'bars';
+               button3 = 'pillow';
+
+            }
+            if(questionNumber===24 && failed===false)
+            {
+               game.debug.text('warm blanket', 32, 32);
+               game.debug.text('sits at the head of a bed', 32, 48);
+               game.debug.text('too much soap', 32, 64);
+               button1 = 'bed'; 
+               button2 = 'pillow';
+               button3 = 'sink';
+
+            }
+            if(questionNumber===25 && failed===false)
+            {
+               game.debug.text('left-handed people', 32, 32);
+               game.debug.text('nice and soft for headaches', 32, 48);
+               game.debug.text('correct-handed people', 32, 64);
+               button1 = 'left_s';
+               button2 = 'pillow'; 
+               button3 = 'right_s';
+
+            }
+            if(questionNumber===26 && failed===false)
+            {
+               game.debug.text('sheets, ___, etc. on your bed', 32, 32);
+               game.debug.text('see above clue, end part', 32, 48);
+               game.debug.text('head right into jail', 32, 64);
+               button1 = 'pillow'; 
+               button2 = 'bed';
+               button3 = 'right_s';
+
+            }
+            if(questionNumber===27 && failed===false)
+            {
+               game.debug.text('grid-pattern metal', 32, 32);
+               game.debug.text('lumpy mattress', 32, 48);
+               game.debug.text('wrong medicine, look for it', 32, 64);
+               button1 = 'bars'; 
+               button2 = 'bed';
+               button3 = 'left_s';
+
+            }
+            if(questionNumber===28 && failed===false)
+            {
+               game.debug.text('memory foam for the head', 32, 32);
+               game.debug.text('sunk', 32, 48);
+               game.debug.text('flapper broken', 32, 64)
+               button1 = 'pillow'; 
+               button2 = 'sink';
+               button3 = 'toilet';
 
             }
 
