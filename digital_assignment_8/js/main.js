@@ -119,6 +119,7 @@ window.onload = function() {
 
     function phoneBooth()
     {
+        skipDirections.inputEnabled = false;
         ding.play();
         splash = false;
         read = false;
@@ -132,6 +133,7 @@ window.onload = function() {
 
     function replayAction()
     {
+        replay.inputEnabled = false;
         buzzerCount = 0;
         questionsAnswered = 0;
         failed = false;
@@ -144,12 +146,13 @@ window.onload = function() {
         initial.scale.setTo(0.95, 0.70);
         phone = game.add.button (400, 35, 'phone', callMade, this, 2, 1, 0);
         phone.scale.setTo(0.45, 1.5);
-
+        
         
     }
 
     function callMade()
     {
+        phone.inputEnabled = false;
         background.play();
         displayRiddle = false;
         game.time.events.add(Phaser.Timer.SECOND*(AI_number), failedAction, this);
@@ -168,6 +171,7 @@ window.onload = function() {
         left_s = game.add.button(470, 350, 'left_s', left_shelf, this, 2, 1, 0);
         right_s.scale.setTo(0.12, 0.12);
         left_s.scale.setTo(0.12, 0.12);
+
 
     }
 
@@ -189,7 +193,7 @@ window.onload = function() {
         }
     }
 
-
+toilet.inputEnabled = false;
     }
 
     function sink_button()
@@ -207,6 +211,7 @@ window.onload = function() {
             failedAction();
         }
     }
+sink.inputEnabled = false;
 
     }
 
@@ -226,7 +231,7 @@ window.onload = function() {
         }
     }
 
-
+bars.inputEnabled = false;
     }
 
         function bed_button()
@@ -244,7 +249,7 @@ window.onload = function() {
             failedAction();
         }
     }
-
+bed.inputEnabled = false;
 
     }
 
@@ -265,6 +270,7 @@ window.onload = function() {
 
 
     }
+    pillow.inputEnabled = false;
 }
 
 
@@ -284,6 +290,7 @@ window.onload = function() {
         }
 
     }
+    right_s.inputEnabled = false;
 }
 
     function left_shelf()
@@ -303,6 +310,7 @@ window.onload = function() {
 
 
     }
+    left_s.inputEnabled = false;
 }
 
     function failedAction()
@@ -334,6 +342,7 @@ window.onload = function() {
         }
     if(failed===true && success===false && splash === false)
     {
+
     background.mute = true;
     game.debug.text('Player 2:', 32, 32);
     game.debug.text('You were discovered! 25 days in solitary confinement!', 32, 64);
@@ -537,240 +546,7 @@ window.onload = function() {
                button3 = 'right_s';
 
             }
-        //     if(questionNumber===18 && failed===false)
-        //     {
-        //        game.debug.text('nap tm', 32, 32);
-        //        button = 'bed'; 
 
-        //     }
-        //     if(questionNumber===19 && failed===false)
-        //     {
-        //        game.debug.text('iron', 32, 32);
-        //        button = 'bars'; 
-
-        //     }
-        //     if(questionNumber===20 && failed===false)
-        //     {
-        //        game.debug.text('all ur stuff is lft', 32, 32);
-        //        button = 'left_s'; 
-
-        //     }
-        //     if(questionNumber===21 && failed===false)
-        //     {
-        //        game.debug.text('ur on th rght trk', 32, 32);
-        //        button = 'right_s'; 
-
-        //     }
-
-        //     if(questionNumber===22 && failed===false)
-        //     {
-        //        game.debug.text('wttr hot', 32, 32);
-        //        button = 'sink'; 
-
-        //     }
-        //     if(questionNumber===23 && failed===false)
-        //     {
-        //        game.debug.text('have a seat', 32, 32);
-        //        button = 'toilet'; 
-
-        //     }
-        //     if(questionNumber===24 && failed===false)
-        //     {
-        //        game.debug.text('head', 32, 32);
-        //        button = 'pillow'; 
-
-        //     }
-        //     if(questionNumber===25 && failed===false)
-        //     {
-        //        game.debug.text('blanket', 32, 32);
-        //        button = 'bed'; 
-
-        //     }
-        //     if(questionNumber===26 && failed===false)
-        //     {
-        //        game.debug.text('rusty', 32, 32);
-        //        button = 'bars'; 
-
-        //     }
-        //     if(questionNumber===27 && failed===false)
-        //     {
-        //        game.debug.text('lwr shlf', 32, 32);
-        //        button = 'left_s'; 
-
-        //     }
-        //     if(questionNumber===28 && failed===false)
-        //     {
-        //        game.debug.text('uppr shlf', 32, 32);
-        //        button = 'right_s'; 
-
-        //     }
-        //     if(questionNumber===29 && failed===false)
-        //     {
-        //        game.debug.text('drain pipes', 32, 32);
-        //        button = 'sink'; 
-
-        //     }
-        //     if(questionNumber===30 && failed===false)
-        //     {
-        //        game.debug.text('porcelain', 32, 32);
-        //        button = 'toilet'; 
-
-        //     }
-        //     if(questionNumber===31 && failed===false)
-        //     {
-        //        game.debug.text('sft hed', 32, 32);
-        //        button = 'pillow'; 
-
-        //     }
-        //     if(questionNumber===32 && failed===false)
-        //     {
-        //        game.debug.text('mttrs', 32, 32);
-        //        button = 'bed'; 
-
-        //     }
-        //     if(questionNumber===33 && failed===false)
-        //     {
-        //        game.debug.text('drz', 32, 32);
-        //        button = 'bars'; 
-
-        //     }
-        //     if(questionNumber===34 && failed===false)
-        //     {
-        //        game.debug.text('wll lw', 32, 32);
-        //        button = 'left_s'; 
-
-        //     }
-        //     if(questionNumber===35 && failed===false)
-        //     {
-        //        game.debug.text('wll hi', 32, 32);
-        //        button = 'right_s'; 
-        // }
-        //     if(questionNumber===36 && failed===false)
-        //     {
-        //        game.debug.text('wtr fct', 32, 32);
-        //        button = 'sink'; 
-        // }
-        //             if(questionNumber===37 && failed===false)
-        //     {
-        //        game.debug.text('flapper', 32, 32);
-        //        button = 'toilet'; 
-
-        //     }
-        //     if(questionNumber===38 && failed===false)
-        //     {
-        //        game.debug.text('ly ur hed back', 32, 32);
-        //        button = 'pillow'; 
-
-        //     }
-        //     if(questionNumber===39 && failed===false)
-        //     {
-        //        game.debug.text('8 hours a night', 32, 32);
-        //        button = 'bed'; 
-
-        //     }
-        //     if(questionNumber===40 && failed===false)
-        //     {
-        //        game.debug.text('pig iron', 32, 32);
-        //        button = 'bars'; 
-
-        //     }
-        //     if(questionNumber===41 && failed===false)
-        //     {
-        //        game.debug.text('left turn', 32, 32);
-        //        button = 'left_s'; 
-
-        //     }
-        //     if(questionNumber===42 && failed===false)
-        //     {
-        //        game.debug.text('right turn', 32, 32);
-        //        button = 'right_s'; 
-        // }
-        //     if(questionNumber===43 && failed===false)
-        //     {
-        //        game.debug.text('hot n cold', 32, 32);
-        //        button = 'sink'; 
-        // }
-        //             if(questionNumber===44 && failed===false)
-        //     {
-        //        game.debug.text('running flush', 32, 32);
-        //        button = 'toilet'; 
-
-        //     }
-        //     if(questionNumber===45 && failed===false)
-        //     {
-        //        game.debug.text('face down', 32, 32);
-        //        button = 'pillow'; 
-
-        //     }
-        //     if(questionNumber===46 && failed===false)
-        //     {
-        //        game.debug.text('lots of covers, cold night', 32, 32);
-        //        button = 'bed'; 
-
-        //     }
-        //     if(questionNumber===47 && failed===false)
-        //     {
-        //        game.debug.text('no privacy, see through door', 32, 32);
-        //        button = 'bars'; 
-
-        //     }
-        //     if(questionNumber===48 && failed===false)
-        //     {
-        //        game.debug.text('opposite of right 4x', 32, 32);
-        //        button = 'left_s'; 
-
-        //     }
-        //     if(questionNumber===49 && failed===false)
-        //     {
-        //        game.debug.text('opposite of left 4x', 32, 32);
-        //        button = 'right_s'; 
-        // }
-        //     if(questionNumber===50 && failed===false)
-        //     {
-        //        game.debug.text('wash your dishes tonight', 32, 32);
-        //        button = 'sink'; 
-        // }
-
-        //             if(questionNumber===51 && failed===false)
-        //     {
-        //        game.debug.text('do ur business', 32, 32);
-        //        button = 'toilet'; 
-
-        //     }
-        //     if(questionNumber===52 && failed===false)
-        //     {
-        //        game.debug.text('facetime down', 32, 32);
-        //        button = 'pillow'; 
-
-        //     }
-        //     if(questionNumber===53 && failed===false)
-        //     {
-        //        game.debug.text('make it well', 32, 32);
-        //        button = 'bed'; 
-
-        //     }
-        //     if(questionNumber===54 && failed===false)
-        //     {
-        //        game.debug.text('slam', 32, 32);
-        //        button = 'bars'; 
-
-        //     }
-        //     if(questionNumber===55 && failed===false)
-        //     {
-        //        game.debug.text('opposite of correct shelf', 32, 32);
-        //        button = 'left_s'; 
-
-        //     }
-        //     if(questionNumber===56 && failed===false)
-        //     {
-        //        game.debug.text('correct shelf', 32, 32);
-        //        button = 'right_s'; 
-        // }
-        //     if(questionNumber===57 && failed===false)
-        //     {
-        //        game.debug.text('clean water', 32, 32);
-        //        button = 'sink'; 
-        // }
 
     }
 }
