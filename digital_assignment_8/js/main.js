@@ -163,7 +163,7 @@ window.onload = function() {
         sink.scale.setTo(0.12, 0.12);
         bars = game.add.button(850, 260, 'bars', bars_button, this, 2, 1, 0);
         bars.scale.setTo(0.05, 0.1);
-        bed = game.add.button(500, 115, 'bed', bed_button, this, 2, 1, 0);
+        bed = game.add.button(525, 150, 'bed', bed_button, this, 2, 1, 0);
         bed.scale.setTo(0.2, 0.08);
         pillow = game.add.button(430, 100, 'pillow', pillow_button, this, 2, 1, 0);
         pillow.scale.setTo(0.10, 0.10);
