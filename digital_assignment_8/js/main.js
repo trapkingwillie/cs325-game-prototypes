@@ -19,6 +19,8 @@ window.onload = function() {
         game.load.image('replay', 'assets/replay.png', 150, 150);//payphone icon
         game.load.image('splash', 'assets/splash.png', 150, 150);//payphone icon
         game.load.image('loading', 'assets/loading.gif', 150, 150);//payphone icon
+        game.load.image('directions', 'assets/directions.png', 150, 150);
+        game.load.image('skip', 'assets/skip.png', 150, 150);
 
 
 
@@ -63,6 +65,9 @@ window.onload = function() {
     var splashScreen;
     var splash = true;
     var buzzerCount = 0;
+    var directions;
+    var skipDirections;
+    var read = false;
 
 
 
@@ -92,7 +97,7 @@ window.onload = function() {
         ding = game.add.audio('ding');
         buzzer = game.add.audio('buzzer');
         background = game.add.audio('background');
-        game.time.events.add(Phaser.Timer.SECOND*(6), splashScreen, this);
+        game.time.events.add(Phaser.Timer.SECOND*(6), directions, this);
         splashScreen = game.add.sprite(0, 0, 'splash');
         loading = game.add.sprite(350, 300, 'loading');
         //background.play();
@@ -104,9 +109,19 @@ window.onload = function() {
 
     }
 
-    function splashScreen()
+    function directions()
     {
+        read = true;
+        directions = game.add.sprite(0, 0, 'directions');
+        skipDirections = game.add.button(400, 440, 'skip', phoneBooth, this, 2, 1, 0);
+        skipDirections.scale.setTo(0.05, 0.05);
+    }
+
+    function phoneBooth()
+    {
+        ding.play();
         splash = false;
+        read = false;
         displayRiddle = true;
         initial = game.add.sprite(0, 0, 'initial');
         initial.scale.setTo(0.95, 0.70);
@@ -159,8 +174,11 @@ window.onload = function() {
 
         function toilet_button()
     {
+        if(success===false && failed===false)
+        {
         if(button1==='toilet' || button2==='toilet' || button3==='toilet') 
         {
+            if(success===false && failed===false)
             questionsAnswered+=1;
             ding.play();
         }
@@ -169,12 +187,15 @@ window.onload = function() {
             buzzer.play();
             failedAction();
         }
+    }
 
 
     }
 
     function sink_button()
     {
+        if(success===false && failed===false)
+        {
         if(button1==='sink' || button2==='sink' || button3==='sink')
         {
             questionsAnswered+=1;
@@ -185,11 +206,14 @@ window.onload = function() {
             buzzer.play();
             failedAction();
         }
+    }
 
     }
 
         function bars_button()
     {
+        if(success===false && failed===false)
+        {
         if(button1==='bars' || button2==='bars' || button3==='bars')
         {
             questionsAnswered+=1;
@@ -200,12 +224,15 @@ window.onload = function() {
             buzzer.play()
             failedAction();
         }
+    }
 
 
     }
 
         function bed_button()
     {
+        if(success===false && failed===false)
+        {
         if(button1==='bed' || button2==='bed' || button3==='bed')
         {
             questionsAnswered+=1;
@@ -216,12 +243,15 @@ window.onload = function() {
             buzzer.play();
             failedAction();
         }
+    }
 
 
     }
 
         function pillow_button()
     {
+        if(success===false && failed===false)
+        {
         if(button1==='pillow' || button2==='pillow' || button3==='pillow')
         {
             questionsAnswered+=1;
@@ -235,10 +265,13 @@ window.onload = function() {
 
 
     }
+}
 
 
     function right_shelf()
     {
+        if(success===false && failed===false)
+        {
         if(button1==='right_s' || button2==='right_s' || button3==='right_s')
         {
             questionsAnswered+=1;
@@ -251,9 +284,12 @@ window.onload = function() {
         }
 
     }
+}
 
     function left_shelf()
     {
+        if(success===false && failed===false)
+        {
         if(button1==='left_s' || button2==='left_s' || button3==='left_s')
         {
             questionsAnswered+=1;
@@ -267,6 +303,7 @@ window.onload = function() {
 
 
     }
+}
 
     function failedAction()
     {
@@ -281,6 +318,20 @@ window.onload = function() {
 
     function render()
     {
+        if(read===true)
+        {
+    game.debug.text('Begin with two players sitting opposite one another, the computer in the middle.', 32, 16);
+                game.debug.text('Player 1:', 32, 32);
+    game.debug.text('Computer facing P1: Memorize the riddles, and click the phone booth to call Player 2.', 32, 64);
+    game.debug.text('Once the call is made, turn the computer to face only Player 2. Allow Player 2 to ', 32, 80);
+    game.debug.text('ask "yes" or "no" questions, without the words "bed", "sink" "shelf", "toilet", "bars",', 32, 96);
+    game.debug.text('or "pillow", or synonyms. Answer all questions before time runs out.', 32, 112);
+                game.debug.text('Player 2:', 32, 144);
+    game.debug.text('Computer facing P2: Ask Player 1 questions regarding the riddles.', 32, 160);
+    game.debug.text('Select either the bed, sink, left/right shelf, pillow, or toilet as answers.', 32, 176);
+    game.debug.text('Answer correctly, and escape. Answer incorrectly, and be sent to solitary confinement.', 32, 192);
+        game.debug.text('Click the green check mark below to proceed, once you understand these directions.', 32, 300);
+        }
     if(failed===true && success===false && splash === false)
     {
     background.mute = true;
