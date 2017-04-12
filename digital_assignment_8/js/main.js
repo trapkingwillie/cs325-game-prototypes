@@ -161,10 +161,10 @@ window.onload = function() {
         toilet.scale.setTo(0.12, 0.12);
         sink = game.add.button(150, 260, 'sink', sink_button, this, 2, 1, 0);
         sink.scale.setTo(0.12, 0.12);
-        bars = game.add.button(800, 260, 'bars', bars_button, this, 2, 1, 0);
-        bars.scale.setTo(0.10, 0.10);
+        bars = game.add.button(850, 260, 'bars', bars_button, this, 2, 1, 0);
+        bars.scale.setTo(0.05, 0.1);
         bed = game.add.button(670, 100, 'bed', bed_button, this, 2, 1, 0);
-        bed.scale.setTo(0.12, 0.12);
+        bed.scale.setTo(0.2, 0.08);
         pillow = game.add.button(430, 100, 'pillow', pillow_button, this, 2, 1, 0);
         pillow.scale.setTo(0.10, 0.10);
         right_s = game.add.button(610, 380, 'right_s', right_shelf, this, 2, 1, 0);
