@@ -68,6 +68,9 @@ window.onload = function() {
     var directions;
     var skipDirections;
     var read = false;
+    var directionsToP2;
+    var directionsToP1;
+    var textType;
 
 
 
@@ -100,6 +103,9 @@ window.onload = function() {
         game.time.events.add(Phaser.Timer.SECOND*(6), directions, this);
         splashScreen = game.add.sprite(0, 0, 'splash');
         loading = game.add.sprite(350, 300, 'loading');
+        textType = { font: "bold 16px Times New Roman", fill: "#fff"};
+
+
         //background.play();
     }
 
@@ -395,11 +401,16 @@ bed.inputEnabled = false;
     {
     game.debug.text('Player 2:', 32, 16);
     game.debug.text('Guards will arrive in: '+AI_number+' seconds.', 32, 32);
+    directionsToP2 = game.add.text(535, 5, "Ask yes/no questions about riddle and room structure", textType);
+
+
 
     }
       if(failed===false && displayRiddle===true)
       {
         game.debug.text('Player 1:', 32, 16);
+        directionsToP1 = game.add.text(475, 5, "Memorize the riddles, make the call, and answer P2's questions", textType);
+
       if((questionNumber===1 || questionNumber===0) && failed===false)
             {
             game.debug.text('snk ur teeth n2 this', 32, 32);
