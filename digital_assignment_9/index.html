@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Underwater Reconnaissance</title>
+    <script src="js/phaser.js"></script>
+    <script src="js/main.js"></script>
+
+<style>
+body
+{
+    color: #777;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+#readme  
+{
+    margin-top: 10px;
+}
+</style>
+
+</head>
+<body>
+<div id="game"></div>
+<div id="readme">
+<h2>Underwater Reconnaissance</h2>
+<ul>
+
+<li><strong>High Concept:</strong>
+The concept behind 'Jailbird Blues - Part Deux' is for two players to coordinate the prison escape attempt of the 'escaping' player, through the asking of questions by the aforementioned player to the 'outside' player, who has access to the riddles utilized for escape.
+</li>
+
+<li><strong>Theme:</strong>
+	The theme utilized within 'Jailbird Blues - Part Deux' is 'car accident' - the player attempting to escape from prison was falsely convicted of a hit-and-run car accident.
+</li>
+
+<li><strong>Mandated Variety:</strong>
+	'Jailbird Blues - Part Deux' involves direct mouse input to decode messages, causing a deterministic play style. However, the randomness introduced by the AI (which dictates the messages and time required for escape) attempts to slightly mitigate unadulturated deterministic gameplay. Play styles for 'Jailbird Blues: Part Deux' are similar to the original 'Jailbird Blues' - 'Performer' and 'Achiever', due to the remaining core game mechanic of decoding messages to escape from prison. Finally, this iteration of 'Jailbird Blues' resides within the realm of puzzle games, as the escaping player must communicate with the outside player to decode a message, and determine the proper avenue of escape.
+
+</li>
+
+<li><strong>Player Experience Goals:</strong>
+	Players of 'Jailbird Blues - Part Deux' will feel a sense of tension at the onset of the game, as the prison guards will arrive after a set perio of time. Further contributing to this sense of stress is the separation of information - the escaping player is able to see the inside of the prison cell, but the outside player holds the critical messages dictating the proper avenues of escape. If successful, both players will feel a sense of success and accomplishment.
+</li>
+
+<li><strong>Gameplay:</strong>
+		The core gameplay mechanic of 'Jailbird Blues - Part Deux' is the coordinated decoding of three cryptic messages by an imprisoned man (player 1), received through careful questioning of the outside player (player 2) who has access to the messages dictating the proper avenue for escape. The game's AI dictates the time at which guards will arrive, discover the escape attempt, and send player 1 to solitary confinement, where he will have no access to payphones (and, therefore, player 2 and the outside world). The controls for player 1 to escape include the bed, pillow, left shelf, right shelf, sink, and toilet - as well as the bars confining player 1, themselves. If properly decoded, the messages will dictate the proper facets of the cell to exploit for an escape attempt.
+
+</li>
+
+<li><strong>Prototype Goal:</strong>
+	'Jailbird Blues - Part Deux' has a prototype goal of evaluating the core game mechanic of information hiding (and sharing) within a two-player game, manifested through the decoding of cryptic messages.
+</li>
+
+<li><strong>Features:</strong>
+	Unique features of 'Jailbird Blues - Part Deux' include thematic artwork, a splash screen at the onset of gameplay, an AI dictating the arrival time of prison guards, two-player functionality, and information hiding within the game, causing cooperative gameplay.
+</li>
+
+<li><strong>Setting/Premise:</strong>
+	'Jailbird Blues - Part Deux' is set both at the shoreline closest to Alcatraz Prison and within the prison, itself, in August 1949 where an escape attempt is being formed by two palyers - an incarcerated man, and his friend - who has coordinated the strategic destruction of key portions of the escaping man's cell, in hopes of facilitating his freedom. The incarcerated man has phone privileges within Alcatraz, and is being informed of the key pieces of his cell in a cryptic manner, to disallow surveillance by those monitoring his phone calls. The escaping player can only ask 'yes or no' questions to the man on the phone, and cannot use the words 'toilet', 'bed', 'pillow', 'shelf', 'bars', or 'sink'.
+</li>
+
+<li><strong>Story:</strong>
+	The story of 'Jailbird Blues - Part Deux' involves two friends, Jimmy and Billy, who were involved in a hit-and-run car accident, for which Jimmy was imprisoned in Alcatraz. Billy, out of guilt, befriended a maintenance worker at Alcatraz, and has strategically weakened portions of Jimmy's cell, facilitating an easy escape. To minimize noise on the night of the escape, Billy has called Jimmy, and is explaining the proper avenue of escape - through answering Jimmy's 'yes or no' questions. Billy has access to the cryptic messages privided by the maintenance worker, and must aid Jimmy's escape attempt through their decoding and explanation.
+	
+</li>
+
+<li><strong>Target Audience:</strong>
+	The target audience of 'Jailbird Blues - Part Deux' is anyone who enjoys puzzle games, cooperative gameplay, 
+</li>
+
+<li><strong>Play Time:</strong>
+	Approximate play time for 'Jailbird Blues - PArt Deux' is determined by the game's AI, and ranges from 45-70 seconds.
+</li>
+
+<li><strong>Strategies:</strong>
+	A tolerance for stress and excellent communication skills are critical for success within 'Jailbird Blues - Part Deux'.
+</li>
+
+<li><strong>Prototype Assets:</strong>
+<ul>
+<li>Jail Cell: <a href="http://tvo.org/sites/default/files/article-thumbnails/solo-prison-cell.jpg
+">Jail Cell</a></li>
+<li>Transparent Click Target: <a href="http://www.mikechambers.com/files/html5/canvas/exportWithBackgroundColor/images/transparent_graphic.png">Transparent Click Target</a></li>
+<li>Wrong Answer Sound: <a href="http://soundbible.com/grab.php?id=264&type=mp3">Wrong Answer Sound</a></li>
+<li>Background Music: <a href="https://freemidi.org/getterm-8871
+
+">Background Music</a></li>
+<li>Correct Answer Sound: <a href="http://www.orangefreesounds.com/wp-content/uploads/2016/09/Level-up-sound-effect.zip
+
+">Correct Answer Sound</a></li>
+<li>Solitary Confinement Image: <a href="http://f9gir2rjo1h37yhix423yowq.wpengine.netdna-cdn.com/wp-content/uploads/2017/01/RYOT_solitary_cell_test_animation_4.gif
+">Solitary Confinement Image</a></li>
+<li>Alcatraz Shoreline Image: <a href="http://assets.natgeotv.com/Shows/17108.jpg
+">Alcatraz Shoreline Image</a></li>
+<li>Image Conversion Software: <a href="http://www.online-convert.com/result/b530522e-43be-4a43-97d1-94a0b519bcfe
+">Image Conversion Software</a></li>
+<li>Phone Booth: <a href="http://2.bp.blogspot.com/_6lJndyb7mBU/TU9MzavzysI/AAAAAAAAAUA/I9tnWcSutWU/s1600/ipad51.png
+
+">Phone Booth</a></li>
+<li>Splash Screen: <a href="https://res.cloudinary.com/uktv/image/upload/h_720,q_80,w_1280/v1465307593/nq8xuxegiiwpa0wyyecr.jpg
+
+">Splash Screen</a></li>
+<li>Loading Graphic: <a href="https://www.e-fusenshi.com/common/img/template/loader_medium.gif
+">Loading Graphic</a></li>
+<li>Replay Icon: <a href="http://icons.iconarchive.com/icons/hopstarter/soft-scraps/256/Button-Reload-icon.png
+">Replay Icon</a></li>
+<li>Directions Background: <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Solid_black.svg/2000px-Solid_black.svg.png
+">Directions Background</a></li>
+<li>Green Checkmark: <a href="http://www.clipartbest.com/cliparts/eTM/y9b/eTMy9bnqc.png
+">Green Checkmark</a></li>
+
+</ul>
+</li>
+<li><strong>Prototype Closest Other Game:</strong>
+	'Jailbird Blues - Part Deux' is an iterative improvement of 'Jailbird Blues', and seeks to both polish the initial game, and improve its core mechanic. Alterations include the prevalence of information hiding within the game, whereby player 1 (the escaping player) cannot see the riddles presented to player 2 (the player answering player 1's questions regarding the riddles, in an attmept to acquire the proper avenue for escape from Alcatraz). Furthermore, with respect to polish, the artwork and sounds contained within the game were polished to more adequately reflect the game's mood and thematic elements, along with the controls for the game (the click targets were honed to take input more accurately, and have a cancelling behavior to prevent presses after the game is complete). Additionally, as an improvement to the core game mechanic, rules, and game procedure, player 2 is now involved solely as a conveyor of information, and both players are now inextricably linked through each player's communication skills. Finally, polish of the initial portion of the game was accomplished through the addition of a splash screen, added to increase dramatic tension, and directions for the game are included within the game, to brief players on the core mechanic of the game, and its rules.
+Sources:
+<ul>
+<li>Playing Music: <a href="http://phaser.io/examples/v2/audio/play-music/">Playing Music</a></li>
+<li>Playing Sounds <a href="http://phaser.io/docs/2.4.4/Phaser.Sound.html#mute">Playing Sounds</a></li>
+<li>Creating a Custom Timer: <a href="http://phaser.io/examples/v2/time/custom-timer">Creating a Custom Timer</a></li>
+<li>Basic Timed Event: <a href="http://phaser.io/examples/v2/time/basic-timed-event">Basic Timed Event</a></li>
+<li> Action on Click<a href="http://phaser.io/examples/v2/buttons/action-on-click">Action on Click</a></li>
+<li> Adding Multiple Sprites <a href = "
+http://phaser.io/examples/v2/sprites/add-several-sprites"> Adding Multiple Sprites </a></li>
+<li> Disabling a Button on Click <a href = "
+phaser.io/examples/v2/buttons/disable-button-on-click"> Disabling a Button on Click </a></li>
+
+<li> Destroying Sprites <a href = "http://phaser.io/examples/v2/sprites/destroy"> Destroying a Sprite </a></li>
+<li> Center Text <a href = "https://phaser.io/examples/v2/text/center-text"> Center Text </a></li>
+
+http://www.freeiconspng.com/uploads/up-arrow-png-20.png
+http://www.icons101.com/icon_png/size_512/id_70062/Find_My_iPhone.png
+http://removeimagebackground.com/
+http://cdn.wallpapersafari.com/46/42/NaOxVf.gif
+http://icons.iconarchive.com/icons/flat-icons.com/flat/512/Submarine-icon.png
+http://icons.iconarchive.com/icons/artua/pirates/256/treasure-icon.png
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+</li>
+</ul>
+</div>
+</body>
+</html>
