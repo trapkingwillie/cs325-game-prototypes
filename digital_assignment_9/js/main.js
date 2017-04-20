@@ -46,6 +46,8 @@ var moves = 15;
 var close = false;
 var win = false;
 var failed = false;
+var completionTime = 0;
+var gameTimer;
 
 
 
@@ -58,7 +60,7 @@ var failed = false;
         // ding = game.add.audio('ding');
         // buzzer = game.add.audio('buzzer');
         // background = game.add.audio('background');
-        game.time.events.add(Phaser.Timer.SECOND*(120), failedAction, this);
+        // game.time.events.add(Phaser.Timer.SECOND*(120), failedAction, this);
         grid = game.add.sprite(0, 0, 'grid');
         robot = game.add.sprite(positionRobotX, positionRobotY, 'robot');
         robot.scale.setTo(0.1, 0.1);
@@ -75,8 +77,17 @@ var failed = false;
         right_arrow.scale.setTo(0.08, 0.08);
         operatorRequest = game.add.button(675, 710, 'operatorRequest', distanceRequest, this, 2, 1, 0);
         operatorRequest.scale.setTo(0.1, 0.1);
+        gameTimer = game.time.create(false);
+        gameTimer.loop(1000, loopControl, this);
+        gameTimer.start();
+
 
         //background.play();
+    }
+
+    function loopControl()
+    {
+        completionTime++;
     }
 
     function upFunction()
@@ -163,15 +174,21 @@ var failed = false;
         //utilize distanceX and distanceY to show the distance between the robot and the treasure.
         //if distanceX and distanceY between the robot and the treasure are <50, the player has discovered
         //the treasure, and has won the game.
-        if(distance===true)
+        if(distance===true && distanceRequests >0)
         {
             game.debug.text('The treasure is '+distanceX+' meters away (X), and '+distanceY+' meters away (Y)', 32, 16);
         }
+        if(distance===false)
+        {
+            game.debug.text(' ', 32, 16);
+        }
         if(distanceX <50 && distanceY<50)
         {
+
+            gameTimer.stop();
             win = true;
             distance = false;
-            game.debug.text('You located the treasure!', 32, 16);
+            game.debug.text('You located the treasure in '+completionTime+' seconds.', 32, 16);
 
         }
         if(failed===true || moves===0)
