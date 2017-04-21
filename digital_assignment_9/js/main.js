@@ -23,16 +23,19 @@ window.onload = function() {
 
 
 
-        game.load.audio('ding', 'assets/ding.mp3');//gameplay music
+        game.load.audio('ding', 'assets/ding.mp3');//whoosh
         game.load.audio('buzzer', 'assets/buzzer.mp3');
+        game.load.audio('sonar', 'assets/sonar.mp3');
+        game.load.audio('servo', 'assets/servo.mp3');
+        game.load.audio('move', 'assets/move.mp3');
         game.load.audio('backgroundMusic', 'assets/background.mp3');//winning music
         //game.load.audio('lose', 'assets/lose.mp3');//losing music
     }
     
-var positionTreasureX = Math.floor(Math.random()*900)+1;
-var positionTreasureY = Math.floor(Math.random()*600)+1;
-var positionRobotX = Math.floor(Math.random()*900)+1;
-var positionRobotY = Math.floor(Math.random()*600)+1;
+var positionTreasureX = Math.floor(Math.random()*800)+1;
+var positionTreasureY = Math.floor(Math.random()*500)+1;
+var positionRobotX = Math.floor(Math.random()*800)+1;
+var positionRobotY = Math.floor(Math.random()*500)+1;
 var distanceX = positionTreasureX-positionRobotX;
 var distanceY = positionTreasureY-positionRobotY;
 var distanceRequests = 5;
@@ -45,7 +48,7 @@ var down_arrow;
 var left_arrow;
 var right_arrow;
 var distance;
-var moves = 15;
+var moves = 22;
 var win = false;
 var failed = false;
 var completionTime = 0;
@@ -62,6 +65,9 @@ var buzzer;
 var background;
 var backgroundMusic;
 var deactivate = false;
+var sonar;
+var servo;
+var move;
 
 
 
@@ -74,6 +80,9 @@ var deactivate = false;
         ding = game.add.audio('ding');
         buzzer = game.add.audio('buzzer');
         backgroundMusic = game.add.audio('backgroundMusic');
+        sonar = game.add.audio('sonar');
+        servo = game.add.audio('servo');
+        //whoosh for movement, bell ding for directions and win, servo for robot arm, sonar ping for sonar, and buzzer for loss.
         //lose = game.add.audio('lose');
         // game.time.events.add(Phaser.Timer.SECOND*(120), failedAction, this);
 
@@ -134,7 +143,7 @@ var deactivate = false;
         if(deactivate===false)
         {
         //decrease distanceY by 50.
-        ding.play();
+        move.play();
         distanceY+=50;
         moves-=1;
     }
@@ -151,7 +160,7 @@ var deactivate = false;
         if(deactivate===false)
         {
         //increase distanceY by 50.
-        ding.play();
+        move.play();
         distanceY-=50;
         moves-=1;
     }
@@ -168,7 +177,7 @@ var deactivate = false;
         if(deactivate===false)
         {
         //decrease distanceX by 50.
-        ding.play();
+        move.play();
         distanceX+=50;
         moves-=1;
     }
@@ -185,7 +194,7 @@ var deactivate = false;
         if(deactivate===false)
         {
         //increase distanceX by 50.
-        ding.play();
+        move.play();
         distanceX-=50;
         moves-=1;
     }
@@ -208,7 +217,7 @@ var deactivate = false;
         {
         if(distanceRequests>0)
         {
-            ding.play();//placeholder - add in sonar sound.
+            sonar.play();//placeholder - add in sonar sound.
         distance = true; //controls whether or not the distance is shown.
         distanceRequests-=1;
         game.time.events.add(Phaser.Timer.SECOND*(5), distanceTimer, this);
@@ -229,11 +238,12 @@ var deactivate = false;
         if(distanceX <30 && distanceY<30)
         {
             gameTimer.stop();
-            ding.play();//placeholder - add in buzzing sound.
+            servo.play();
             win = true;
             distance = false;
             successImage = game.add.sprite(0, 0, 'successImage');
             successImage.scale.setTo(0.5, 0.5);
+            arms.destroy();
         }
 
         else
@@ -257,7 +267,9 @@ var deactivate = false;
     function failedAction()
     {
     failed = true;
+    backgroundMusic.mute = true;
     buzzer.play();
+    arms.destroy();
 
 
     }
@@ -268,7 +280,7 @@ var deactivate = false;
         //utilize distanceX and distanceY to show the distance between the robot and the treasure.
         //if distanceX and distanceY between the robot and the treasure are <50, the player has discovered
         //the treasure, and has won the game.
-        if(gameTimer >119)
+        if(completionTime >119)
         {
             failedAction();
         }
@@ -280,15 +292,15 @@ var deactivate = false;
         if(win===true)
         {
             distance = false;
-            upFunction();
-            downFunction();
-            leftFunction();
-            rightFunction();
-            armsDeployed();
-            distanceRequest();
+up_arrow.destroy();
+down_arrow.destroy();
+left_arrow.destroy();
+right_arrow.destroy();
+operatorRequest.destroy();
             game.debug.text('You located the treasure in '+completionTime+' seconds.', 32, 16);
             game.debug.text('You utilized '+(15-moves)+' moves.', 32, 32);
             deactivate = true;
+            backgroundMusic.mute = true;
         }
 
         if(read===true)
@@ -315,12 +327,11 @@ var deactivate = false;
             failedImage = game.add.sprite(0, 0, 'failedImage');
             distance = false;
             deactivate = true;
-            upFunction();
-            downFunction();
-            leftFunction();
-            rightFunction();
-            armsDeployed();
-            distanceRequest();
+up_arrow.destroy();
+down_arrow.destroy();
+left_arrow.destroy();
+right_arrow.destroy();
+operatorRequest.destroy();
             game.debug.text('You did not locate the treasure.', 32, 16);
         }
 
