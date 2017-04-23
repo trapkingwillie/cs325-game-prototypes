@@ -68,6 +68,7 @@ var deactivate = false;
 var sonar;
 var servo;
 var move;
+var played = false;
 
 
 
@@ -209,7 +210,7 @@ var move;
 
     function distanceRequest()
     {
-        if(deactivate===true)
+        if(deactivate===true || distanceRequests===0)
         {
             operatorRequest.inputEnabled = false;
 
@@ -239,12 +240,13 @@ var move;
         if(distanceX <30 && distanceY<30)
         {
             gameTimer.stop();
-            servo.play();
+            //servo.play();
             win = true;
             distance = false;
             successImage = game.add.sprite(0, 0, 'successImage');
+            ding.play();
             successImage.scale.setTo(0.5, 0.5);
-            arms.destroy();
+            robotArms.destroy();
         }
 
         else
@@ -267,10 +269,18 @@ var move;
 
     function failedAction()
     {
+    failedImage = game.add.sprite(0, 0, 'failedImage');
     failed = true;
+    deactivate = true;
     backgroundMusic.mute = true;
     buzzer.play();
-    arms.destroy();
+    robotArms.destroy();
+    up_arrow.destroy();
+down_arrow.destroy();
+left_arrow.destroy();
+right_arrow.destroy();
+operatorRequest.destroy();
+played = true;
 
 
     }
@@ -281,13 +291,21 @@ var move;
         //utilize distanceX and distanceY to show the distance between the robot and the treasure.
         //if distanceX and distanceY between the robot and the treasure are <50, the player has discovered
         //the treasure, and has won the game.
-        if(completionTime >119)
+        if(completionTime >119 && played===false)
         {
             failedAction();
+            
+
         }
-        if(moves<1)
+        if(moves<1 && played===false)
         {
             failedAction();
+            
+
+        }
+        if(played===true)
+        {
+            game.debug.text('You did not locate the treasure.', 32, 16);
         }
         if(distance===false || read===false)
         {
@@ -297,13 +315,9 @@ var move;
         if(win===true)
         {
             distance = false;
-up_arrow.destroy();
-down_arrow.destroy();
-left_arrow.destroy();
-right_arrow.destroy();
-operatorRequest.destroy();
+
             game.debug.text('You located the treasure in '+completionTime+' seconds.', 32, 16);
-            game.debug.text('You utilized '+(15-moves)+' moves.', 32, 32);
+            game.debug.text('You utilized '+(22-moves)+' moves.', 32, 32);
             deactivate = true;
             backgroundMusic.mute = true;
         }
@@ -327,18 +341,17 @@ operatorRequest.destroy();
             game.debug.text('The treasure is '+distanceX+' meters away (X), and '+distanceY+' meters away (Y)', 32, 16);
         }
 
-        if(failed===true || moves<1)
-        {
-            failedImage = game.add.sprite(0, 0, 'failedImage');
-            distance = false;
-            deactivate = true;
-up_arrow.destroy();
-down_arrow.destroy();
-left_arrow.destroy();
-right_arrow.destroy();
-operatorRequest.destroy();
-            game.debug.text('You did not locate the treasure.', 32, 16);
-        }
+        // if(failed===true || moves<1)
+        // {
+        //     distance = false;
+        //     deactivate = true;
+        //     up_arrow.destroy();
+        //     down_arrow.destroy();
+        //     left_arrow.destroy();
+        //     right_arrow.destroy();
+        //     operatorRequest.destroy();
+            
+        // }
 
     }
 
