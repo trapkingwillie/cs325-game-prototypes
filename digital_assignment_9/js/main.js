@@ -285,6 +285,10 @@ var move;
         {
             failedAction();
         }
+        if(moves<1)
+        {
+            failedAction();
+        }
         if(distance===false || read===false)
         {
             game.debug.text(' ', 32, 16);
