@@ -82,6 +82,7 @@ var move;
         backgroundMusic = game.add.audio('backgroundMusic');
         sonar = game.add.audio('sonar');
         servo = game.add.audio('servo');
+        move = game.add.audio('move');
         //whoosh for movement, bell ding for directions and win, servo for robot arm, sonar ping for sonar, and buzzer for loss.
         //lose = game.add.audio('lose');
         // game.time.events.add(Phaser.Timer.SECOND*(120), failedAction, this);
@@ -322,7 +323,7 @@ operatorRequest.destroy();
             game.debug.text('The treasure is '+distanceX+' meters away (X), and '+distanceY+' meters away (Y)', 32, 16);
         }
 
-        if(failed===true || moves===0)
+        if(failed===true || moves<1)
         {
             failedImage = game.add.sprite(0, 0, 'failedImage');
             distance = false;
