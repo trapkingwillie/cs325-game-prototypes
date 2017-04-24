@@ -32,10 +32,10 @@ window.onload = function() {
         //game.load.audio('lose', 'assets/lose.mp3');//losing music
     }
     
-var positionTreasureX = Math.floor(Math.random()*800)+1;
-var positionTreasureY = Math.floor(Math.random()*500)+1;
-var positionRobotX = Math.floor(Math.random()*800)+1;
-var positionRobotY = Math.floor(Math.random()*500)+1;
+var positionTreasureX = Math.floor(Math.random()*700)+1;
+var positionTreasureY = Math.floor(Math.random()*400)+1;
+var positionRobotX = Math.floor(Math.random()*700)+1;
+var positionRobotY = Math.floor(Math.random()*400)+1;
 var distanceX = positionTreasureX-positionRobotX;
 var distanceY = positionTreasureY-positionRobotY;
 var distanceRequests = 5;
@@ -69,6 +69,11 @@ var sonar;
 var servo;
 var move;
 var played = false;
+var winLine1;
+var winLine2;
+var lossLine1;
+var lossLine2;
+var textType;
 
 
 
@@ -92,6 +97,7 @@ var played = false;
         background = game.add.sprite(0, 0, 'background');
         robotSkip = game.add.button(425, 440, 'robot', gameStart, this, 2, 1, 0);
         robotSkip.scale.setTo(0.2, 0.2);
+        textType = { font: "bold 22px Times New Roman", fill: "#fff"};
 
 
 
@@ -235,9 +241,7 @@ var played = false;
             robotArms.inputEnabled = false;
 
         }
-        if(deactivate===false)
-        {
-        if(distanceX <30 && distanceY<30)
+        if(deactivate===false && Math.abs(distanceY)<30 && Math.abs(distanceX)<30)//fix, because there are negatives
         {
             gameTimer.stop();
             //servo.play();
@@ -247,16 +251,10 @@ var played = false;
             ding.play();
             successImage.scale.setTo(0.5, 0.5);
             robotArms.destroy();
-        }
-
-        else
-        {
-            var probability = Math.random();
-            if(probability <0.2)
-            {
-                failedAction();
-            }
-        }
+    }
+    if(win===false)
+    {
+        failedAction();
     }
 
     }
@@ -305,7 +303,8 @@ played = true;
         }
         if(played===true)
         {
-            game.debug.text('You did not locate the treasure.', 32, 16);
+            // game.debug.text('You did not locate the treasure.', 32, 16);
+            lossLine1 = game.add.text(32, 32, "You did not locate the treasure.", textType);
         }
         if(distance===false || read===false)
         {
@@ -316,8 +315,10 @@ played = true;
         {
             distance = false;
 
-            game.debug.text('You located the treasure in '+completionTime+' seconds.', 32, 16);
-            game.debug.text('You utilized '+(22-moves)+' moves.', 32, 32);
+            // game.debug.text('You located the treasure in '+completionTime+' seconds.', 32, 16);
+            // game.debug.text('You utilized '+(22-moves)+' moves.', 32, 32);
+            winLine1 = game.add.text(32, 32, "You located the treasure in "+completionTime+" seconds, ", textType);
+            winLine2 = game.add.text(32, 56, "You utilized "+(22-moves)+" moves.", textType);
             deactivate = true;
             backgroundMusic.mute = true;
         }
@@ -325,20 +326,23 @@ played = true;
         if(read===true)
         {
     game.debug.text('You robot is randomly placed on the sea floor, and is looking for treasure.', 32, 16);
-                game.debug.text('The initial position of the treasure is given on the grid...', 32, 32);
-    game.debug.text('but this is only the initial position. Use the SONAR Operator to give text', 32, 64);
-    game.debug.text('updates as to your relative position to the treasure. You can only use ', 32, 80);
-    game.debug.text('SONAR five times, and you only have 15 moves (and two minutes of battery),', 32, 96);
-    game.debug.text('so move quickly, and choose your position updates wisely.', 32, 112);
-                game.debug.text('Once you are within 1 meter (30 px) of the treasure, deploy', 32, 144);
-    game.debug.text('the robot arms to pick up the treasure. Be careful to only activate the ', 32, 160);
+                game.debug.text('The initial position of the treasure is given on the grid...', 32, 36);
+    game.debug.text('but this is only the initial position. Use the SONAR Operator to give text', 32, 56);
+    game.debug.text('updates as to your relative position to the treasure. You can only use ', 32, 76);
+    game.debug.text('SONAR five times, and you only have 22 moves (and two minutes of battery),', 32, 96);
+    game.debug.text('so move quickly, and choose your position updates wisely - each 50 pixel move corresponds to ', 32, 116);
+                game.debug.text('1.67 meters in that direction. Once you are within 1 meter (30 px) of the treasure, deploy', 32, 136);
+    game.debug.text('the robot arms to pick up the treasure. Be careful to only activate the ', 32, 156);
     game.debug.text('arms when you are within 1 meter of the treasure - they may get snagged ', 32, 176);
-    game.debug.text('on the ocean floor and trap your robot otherwise.', 32, 192);
-        game.debug.text('Click the robot below to proceed, once you are comfortable with these directions.', 32, 300);
+    game.debug.text('on the ocean floor and trap your robot for distances greater than 1 meter (30px).', 32, 196);
+    game.debug.text('Note: This version of SONAR software displays distance measurements in pixels.', 32, 256);
+        game.debug.text('A positive distance reading indicates right/down (x/y), and a negative reading, the inverse.', 32, 276);
+
+        game.debug.text('Click the robot below to proceed, once you are comfortable with these directions.', 32, 316);
         }
         if(distance===true && distanceRequests >0)
         {
-            game.debug.text('The treasure is '+distanceX+' meters away (X), and '+distanceY+' meters away (Y)', 32, 16);
+            game.debug.text('The treasure is '+distanceX+' px away (X), and '+distanceY+' px away (Y)', 32, 16);
         }
 
         // if(failed===true || moves<1)
