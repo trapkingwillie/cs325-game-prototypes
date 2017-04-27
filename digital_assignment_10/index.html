@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Underwater Reconnaissance</title>
+    <script src="js/phaser.js"></script>
+    <script src="js/main.js"></script>
+
+<style>
+body
+{
+    color: #777;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+#readme  
+{
+    margin-top: 10px;
+}
+</style>
+
+</head>
+<body>
+<div id="game"></div>
+<div id="readme">
+<h2>Underwater Reconnaissance</h2>
+<ul>
+
+<li><strong>High Concept:</strong>
+The concept behind 'Underwater Reconnaissance' is for players to recover undersea treasure through the programming of an underwater robot.
+</li>
+
+<li><strong>Theme:</strong>
+	The theme utilized in 'Underwater Reconnaissance' is 'Bookworm' - within the Naval community, becoming a SONAR operator requires quite a large degree of studying and book knowledge. 
+</li>
+
+<li><strong>Mandated Variety:</strong>
+	'Underwater Reconnaissance' utilizes direct mouse input to select the movements of the robot, and to deploy the robot's 'arms', or to request a SONAR reading. This direct style of input contributes to a deterministic play style, while the random placement of both the robot and the treasureintroduces a degree of randomness. Play styles for 'Underwater Reconnaissance' are 'Achiever' and 'Performer', as one must calculate, program, and retrieve the treasure in a time-conscious manner to complete the game successfully. The nature of 'Underwater Reconnaissance' is akin to a puzzle or programming game, as one must maneuver the robot through programming to reach (and retrieve) the treasure.
+</li>
+
+<li><strong>Player Experience Goals:</strong>
+	Players of 'Underwater Reconnaissance' will feel a sense of excitement and dramatic tension as they attempt to maneuver the robot towards the treasure, and a sense of accomplishment once they have successfully completed the game. Further emphasizing the tension created through the (relatively) unknown movements of the robot is the notion that the game must be completed within 120 seconds, within 22 moves, and players may only make five SONAR requests.
+</li>
+
+<li><strong>Gameplay:</strong>
+	The core gameplay mechnic of 'Underwater Reconaissance' is the use of an underwater robot to recover treasure, in the shortest possible time. Players compete to achieve the shortest time to completion, and are limited to 120 seconds per game. five SONAR requests, and 22 total moves of the ROBOT. Once the treasure is reached (players are within 30 units of the treasure), players may extend the robot's 'arms' to recover it; however, if they are not close enough, they run a high likelihood of snagging the arms on underwater debris, and crashing the robot, thereby losing the game.
+
+</li>
+
+<li><strong>Prototype Goal:</strong>
+	'Underwater Reconnaissance' prototypes the core mechanic of programming a robot to reach a destination in the shortest possible time, along with other constraints.
+</li>
+
+<li><strong>Features:</strong>
+	Unique features of 'Underwater Robot Reconnaissance' include unique artwork, an interesting game mechanic, and the ability of players to compete to achieve the lowest treasure recovery time.
+</li>
+
+<li><strong>Setting/Premise:</strong>
+	'Underwater REconnaissance' is set at the bottom of the Pacific Ocean, where a treasure chest has been located. The player is tasked with leading a robot reconnaissance mission to recover the treasure, and is given the initial position of their robot and the treasure, relative to one another. Players are given the ability to make five SONAR requests, and their robot has battery for 22 total moves, or 120 seconds, whichever comes first. The 'arms' of the robot are used to recover the treasure, but players must be congnizant of the robot's proximity to the treasure - if they are not close enough, the arms may snag undersea debris, and crash the robot.
+</li>
+
+<li><strong>Story:</strong>
+	The story of 'Underwater Reconnaissance' follows world-reknowned treasure hunter John Ballard, who bases his lievelihood ont he proceeds from recovering underwater treasure, left by pirate ships and the like. He has located a treasure chest, possibly containing upwards of $15 million in the middle of the Pacific Ocean. He has sailed to the approximate location of the treasure, and is now using his underwater robot to retrieve the treasure. As mentioned above, the robot has a 120-second battery, and the crew's SONAR operator has equipment with enough battery for five SONAR position requests. Ballard knows the initial placement of the robot relative to the treasure, and must navigate to the chest, then deploying the robot's arms to retrieve the chest from the ocean floow. Will Ballard becone newly wealthy? Players will determine his success or failure.
+	
+</li>
+
+<li><strong>Target Audience:</strong>
+	The target audience of 'Underwater Reconnaissance' is anyone who enjoys thrilling puzzle games, or programming.
+</li>
+
+<li><strong>Play Time:</strong>
+	Approximate play time for 'Underwater Reconnaissance' is two minutes.
+</li>
+
+<li><strong>Strategies:</strong>
+	Spatial awareness, quick mental calculation, and efficient use of time are excellent strategies for 'Underwater Reconnaissance'.
+</li>
+
+<li><strong>Prototype Assets:</strong>
+<ul>
+<li>Up Arrow: <a href="http://www.freeiconspng.com/uploads/up-arrow-png-20.png
+">Up Arrow</a></li>
+<li>Find My iPhone Logo: <a href="http://www.icons101.com/icon_png/size_512/id_70062/Find_My_iPhone.png">Find My iPhone Logo</a></li>
+<li>Image Background Removal: <a href="http://removeimagebackground.com/">Image Background Removal</a></li>
+<li>Grid: <a href="http://cdn.wallpapersafari.com/46/42/NaOxVf.gif
+
+">Grid</a></li>
+<li>Robot: <a href="http://icons.iconarchive.com/icons/flat-icons.com/flat/512/Submarine-icon.png
+
+">Robot</a></li>
+<li>Treasure: <a href="http://icons.iconarchive.com/icons/artua/pirates/256/treasure-icon.png
+">Treasure</a></li>
+<li>Treasure (Win Splash Screen): <a href="http://allswalls.com/images/treasure-underwater-wallpaper-1.jpg
+">Treasure (Win Splash Screen)</a></li>
+<li>Plane Crash (Loss Splash Screen): <a href="https://images.vice.com/vice/images/galleries/meta/2014/11/12/we-talked-to-the-guy-who-photographs-plane-crashes-126-1415756828.jpg
+">Plane Crash (Loss Splash Screen)</a></li>
+<li>Steam Logo: <a href="http://icons.iconarchive.com/icons/blackvariant/button-ui-requests-10/256/Steam-icon.png
+
+">Steam Logo</a></li>
+<li>Online Image Conversion Software: <a href="http://www.online-convert.com/result/8db0f4af-7a27-4277-aaa9-ef1d27ecbb1a
+
+">Online Image Conversion Software</a></li>
+<li>SONAR Ping Sound: <a href="http://soundbible.com/grab.php?id=1183&type=mp3
+">SONAR Ping Sound</a></li>
+<li>Bell Sound: <a href="http://soundbible.com/grab.php?id=1628&type=mp3
+">Bell Sound</a></li>
+<li>Servo Sound: <a href="http://soundbible.com/grab.php?id=1440&type=mp3
+">Servo Sound</a></li>
+<li>Buzzer Sound: <a href="http://soundbible.com/grab.php?id=1495&type=mp3
+">Buzzer Sound</a></li>
+<li>Background Music: <a href="http://www.orangefreesounds.com/wp-content/uploads/2016/04/Jaws-theme-song.zip
+">Background Music</a></li>
+<li>Whoosh Sound: <a href = "http://soundbible.com/grab.php?id=2068&type=mp3"> Whoosh Sound </a></li>
+https://img.clipartfest.com/3aa456d6ecd1012d3ad6254de957e43c_alarm-clock-png-image-8134-clock-clipart-transparent-background-7-o-clock_2400-2400.png //alarm clock
+https://thetechportal.com/wp-content/uploads/2017/01/powerRay-1.jpg //splash screen
+http://www.workmax.com/images/WorkMax_Images/BLOG/Easy_Button_flat_green.png //easy button
+http://vignette3.wikia.nocookie.net/battlefordreamislandfanfiction/images/2/2f/Hard_Button.png/revision/latest?cb=20130710200240 //hard button
+http://orig01.deviantart.net/846d/f/2011/263/0/8/grid_blue_by_leafeniel-d4afun4.jpg  //hard grid
+http://images4.wikia.nocookie.net/__cb20130206023816/testingthisout/images/3/31/Mini_Mushroom.png //moves increase mushroom
+
+</ul>
+</li>
+<li><strong>Prototype Closest Other Game:</strong>
+Sources:
+<ul>
+<li>Playing Music: <a href="http://phaser.io/examples/v2/audio/play-music/">Playing Music</a></li>
+<li>Playing Sounds <a href="http://phaser.io/docs/2.4.4/Phaser.Sound.html#mute">Playing Sounds</a></li>
+<li>Creating a Custom Timer: <a href="http://phaser.io/examples/v2/time/custom-timer">Creating a Custom Timer</a></li>
+<li>Basic Timed Event: <a href="http://phaser.io/examples/v2/time/basic-timed-event">Basic Timed Event</a></li>
+<li> Action on Click<a href="http://phaser.io/examples/v2/buttons/action-on-click">Action on Click</a></li>
+<li> Adding Multiple Sprites <a href = "
+http://phaser.io/examples/v2/sprites/add-several-sprites"> Adding Multiple Sprites </a></li>
+<li> Disabling a Button on Click <a href = "
+phaser.io/examples/v2/buttons/disable-button-on-click"> Disabling a Button on Click </a></li>
+<li> Center Text <a href = "https://phaser.io/examples/v2/text/center-text"> Center Text </a></li>
+<li> Destroying Sprites <a href = "http://phaser.io/examples/v2/sprites/destroy"> Destroying a Sprite </a></li>
+<li> Center Text <a href = "https://phaser.io/examples/v2/text/center-text"> Center Text </a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+</li>
+</ul>
+</div>
+</body>
+</html>

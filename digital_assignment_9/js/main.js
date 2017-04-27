@@ -32,10 +32,10 @@ window.onload = function() {
         //game.load.audio('lose', 'assets/lose.mp3');//losing music
     }
     
-var positionTreasureX = Math.floor(Math.random()*700)+1;
-var positionTreasureY = Math.floor(Math.random()*400)+1;
-var positionRobotX = Math.floor(Math.random()*700)+1;
-var positionRobotY = Math.floor(Math.random()*400)+1;
+var positionTreasureX = Math.floor(Math.random()*500)+100;
+var positionTreasureY = Math.floor(Math.random()*300)+1;
+var positionRobotX = Math.floor(Math.random()*500)+100;
+var positionRobotY = Math.floor(Math.random()*300)+1;
 var distanceX = positionTreasureX-positionRobotX;
 var distanceY = positionTreasureY-positionRobotY;
 var distanceRequests = 5;
