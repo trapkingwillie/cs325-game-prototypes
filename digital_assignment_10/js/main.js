@@ -99,6 +99,10 @@ var hard;
 var hardGrid;
 var movesIncrease;
 var sonarIncrease;
+var clocked = false;
+var sonared = false;
+var moved = false;
+var foundSomething = false;
 
 
 
@@ -120,7 +124,7 @@ var sonarIncrease;
         // background = game.add.sprite(0, 0, 'background');
         // robotSkip = game.add.button(425, 440, 'robot', gameStart, this, 2, 1, 0);
         // robotSkip.scale.setTo(0.2, 0.2);
-        textType = { font: "bold 22px Times New Roman", fill: "#fff"};
+        textType = { font: "22px Times New Roman", fill: "#fff"};
         splash = game.add.sprite(0, 0, 'splash');
         loadingText = game.add.text(435, 700, "Loading...", textType);
         //select difficulty for game - dictates currents.
@@ -162,11 +166,13 @@ var sonarIncrease;
         read = false;
         easyGame.inputEnabled = false;
         hardGame.inputEnabled = false;
-        currentX = Math.floor(Math.random()*10)+1;
-        currentY = Math.floor(Math.random()*10)+1;
+        currentX = Math.floor(Math.random()*30)+1;
+        currentY = Math.floor(Math.random()*30)+1;
         difficultySelected = 1;
+        distanceRequests = 8;
         ding.play();
         begin();
+        moves = 25;
 
     }
 
@@ -221,10 +227,18 @@ var sonarIncrease;
             positionTreasureY+=currentY;
             positionClockX+=currentX;
             positionClockY+=currentY;
+            positionMovesX-=currentX;
+            positionMovesY-=currentY;
+            positionSonarX-=currentX;
+            positionSonarY-=currentY;
             distanceX = positionTreasureX-positionRobotX;
             distanceY = positionTreasureY-positionRobotY;
             distanceClockX = positionClockX-positionRobotX;
             distanceClockY = positionClockY-positionRobotY;
+            distanceSonarX = positionSonarX-positionRobotX;
+            distanceSonarY = positionSonarY-positionRobotY;
+            distanceMovesX = positionMovesX-positionRobotX;
+            distanceMovesY = positionMovesY-positionRobotY;
 
         }
     }
@@ -235,15 +249,30 @@ var sonarIncrease;
         {
         //decrease distanceY by 50.
         move.play();
+        positionRobotY-=50;
         distanceY+=50;
         distanceClockY+=50;
         moves-=1;
+    }
+    if(difficultySelected===0)
+    {
+        robot.y-=50;
+    }
+    if(difficultySelected===1)
+    {
+        
+        distanceMovesY+=50;
+        distanceSonarY+=50;
     }
         if(deactivate === true)
         {
             up_arrow.inputEnabled = false;
 
         }
+        clocked = false;
+        moved = false;
+        sonared = false;
+
 
     }
 
@@ -253,15 +282,28 @@ var sonarIncrease;
         {
         //increase distanceY by 50.
         move.play();
+        positionRobotY+=50;
         distanceY-=50;
         distanceClockY-=50;
         moves-=1;
+    }
+        if(difficultySelected===0)
+    {
+        robot.y+=50;
+    }
+        if(difficultySelected===1)
+    {
+        distanceMovesY-=50;
+        distanceSonarY-=50;
     }
         if(deactivate===true)
         {
             down_arrow.inputEnabled = false;
 
         }
+                clocked = false;
+        moved = false;
+        sonared = false;
 
     }
 
@@ -271,15 +313,28 @@ var sonarIncrease;
         {
         //decrease distanceX by 50.
         move.play();
+        positionRobotX-=50;
         distanceX+=50;
         distanceClockX+=50;
         moves-=1;
+    }
+        if(difficultySelected===0)
+    {
+        robot.x-=50;
+    }
+        if(difficultySelected===1)
+    {
+        distanceMovesX+=50;
+        distanceSonarX+=50;
     }
         if(deactivate===true)
         {
             left_arrow.inputEnabled = false;
 
         }
+                clocked = false;
+        moved = false;
+        sonared = false;
 
     }
 
@@ -289,15 +344,28 @@ var sonarIncrease;
         {
         //increase distanceX by 50.
         move.play();
+        positionRobotX+=50;
         distanceX-=50;
         distanceClockX-=50;
         moves-=1;
+    }
+        if(difficultySelected===0)
+    {
+        robot.x+=50;
+    }
+        if(difficultySelected===1)
+    {
+        distanceMovesX-=50;
+        distanceSonarX-=50;
     }
         if(deactivate===true)
         {
             right_arrow.inputEnabled = false;
 
         }
+                clocked = false;
+        moved = false;
+        sonared = false;
         
     }
 
@@ -311,6 +379,16 @@ var sonarIncrease;
         if(difficultySelected===1)
         {
             moves-=1;
+        robot.x = positionRobotX;
+        robot.y = positionRobotY;
+        treasure.x = positionTreasureX;
+        treasure.y = positionTreasureY;
+        clock.x = positionClockX;
+        clock.y = positionClockY;
+        movesIncrease.x = positionMovesX;
+        movesIncrease.y = positionMovesY;
+        sonarIncrease.x = positionSonarX;
+        sonarIncrease.y = positionSonarY;
         }
         if(deactivate===false)
         {
@@ -321,16 +399,26 @@ var sonarIncrease;
         distanceRequests-=1;
         game.time.events.add(Phaser.Timer.SECOND*(5), distanceTimer, this);
         }
+                clocked = false;
+        moved = false;
+        sonared = false;
+
+
+        //move everything to its current position - due to moves, drift, etc.
 }
 
     }
 
     function armsDeployed()
     {
+    // if(win===false && clocked===false && moved===false && sonared===false)
+    // {
+    //     failedAction();
+    // }
         if(deactivate===true)
         {
             robotArms.inputEnabled = false;
-
+            robotArms.destroy();
         }
         if(difficultySelected===1)
         {
@@ -342,6 +430,7 @@ var sonarIncrease;
             //servo.play();
             win = true;
             distance = false;
+            foundSomething = true;
             successImage = game.add.sprite(0, 0, 'successImage');
             ding.play();
             successImage.scale.setTo(0.5, 0.5);
@@ -355,6 +444,8 @@ var sonarIncrease;
             // distance = false;
             // successImage = game.add.sprite(0, 0, 'successImage');
             ding.play();
+            clocked=true;
+            foundSomething = true;
             // successImage.scale.setTo(0.5, 0.5);
             // robotArms.destroy();
             if(completionTime>15)
@@ -366,6 +457,8 @@ var sonarIncrease;
             completionTime=0;
         }
     }
+        if(difficultySelected===1)
+        {
             if(deactivate===false && Math.abs(distanceMovesX)<30 && Math.abs(distanceMovesY)<30)//fix, because there are negatives
         {
             // gameTimer.stop();
@@ -374,6 +467,8 @@ var sonarIncrease;
             // distance = false;
             // successImage = game.add.sprite(0, 0, 'successImage');
             ding.play();
+            moved = true;
+            foundSomething = true;
             // successImage.scale.setTo(0.5, 0.5);
             // robotArms.destroy();
             moves+=10;
@@ -386,14 +481,18 @@ var sonarIncrease;
             // distance = false;
             // successImage = game.add.sprite(0, 0, 'successImage');
             ding.play();
+            sonared = true;
+            foundSomething = true;
             // successImage.scale.setTo(0.5, 0.5);
             // robotArms.destroy();
             distanceRequests+=5;
     }
-    if(win===false && clocked===false)
-    {
-        failedAction();
-    }
+}
+
+if(win===false && foundSomething===false)
+{
+    failedAction();
+}
 
     }
 
@@ -427,6 +526,18 @@ played = true;
         //utilize distanceX and distanceY to show the distance between the robot and the treasure.
         //if distanceX and distanceY between the robot and the treasure are <50, the player has discovered
         //the treasure, and has won the game.
+        if(clocked===true)
+        {
+            game.debug.text('You collected a 15-second time bonus.', 32, 96);
+        }
+                if(moved===true)
+        {
+            game.debug.text('You collected 10 moves.', 32, 112);
+        }
+                if(sonared===true)
+        {
+            game.debug.text('You collected 5 SONAR requests.', 32, 128);
+        }
         if(difficultySelected===0)
         {
         if(completionTime >130 && played===false)
@@ -438,7 +549,7 @@ played = true;
     }
             if(difficultySelected===1)
         {
-        if(completionTime >70 && played===false)
+        if(completionTime >130 && played===false)
         {
             failedAction();
             
@@ -493,7 +604,12 @@ played = true;
         if(distance===true && distanceRequests >0)
         {
             game.debug.text('The treasure is '+distanceX+' px away (X), and '+distanceY+' px away (Y)', 32, 16);
-            game.debug.text('The clock is '+distanceClockX+' px away (X), and '+distanceClockY+' px away (Y)', 32, 32);
+            game.debug.text('The time decrease is '+distanceClockX+' px away (X), and '+distanceClockY+' px away (Y)', 32, 32);
+            if(difficultySelected===1)
+            {
+            game.debug.text('The moves increase is '+distanceMovesX+' px away (X), and '+distanceMovesY+' px away (Y)', 32, 48);
+            game.debug.text('The SONAR increase is '+distanceSonarX+' px away (X), and '+distanceSonarY+' px away (Y)', 32, 64);
+        }
         }
 
         // if(failed===true || moves<1)
