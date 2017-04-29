@@ -166,8 +166,8 @@ var foundSomething = false;
         read = false;
         easyGame.inputEnabled = false;
         hardGame.inputEnabled = false;
-        currentX = Math.floor(Math.random()*30)+1;
-        currentY = Math.floor(Math.random()*30)+1;
+        currentX = Math.floor(Math.random()*70)+1;
+        currentY = Math.floor(Math.random()*70)+1;
         difficultySelected = 1;
         ding.play();
         begin();
@@ -187,16 +187,16 @@ var foundSomething = false;
         if(difficultySelected===1)
         {
             grid = game.add.sprite(0,0, 'hardGrid');
-            movesIncrease = game.add.sprite(positionMovesX, positionMovesY, 'moveUp');
-            movesIncrease.scale.setTo(0.2, 0.2);
-            sonarIncrease = game.add.sprite(positionSonarX, positionSonarY, 'sonarUp');
-            sonarIncrease.scale.setTo(0.1, 0.1);
+            // movesIncrease = game.add.sprite(positionMovesX, positionMovesY, 'moveUp');
+            // movesIncrease.scale.setTo(0.2, 0.2);
+            // sonarIncrease = game.add.sprite(positionSonarX, positionSonarY, 'sonarUp');
+            // sonarIncrease.scale.setTo(0.1, 0.1);
         }
         // game.time.events.add(Phaser.Timer.SECOND *(120), failedAction, this);
         robot = game.add.sprite(positionRobotX, positionRobotY, 'robot');
         robot.scale.setTo(0.1, 0.1);
-        treasure = game.add.sprite(positionTreasureX, positionTreasureY, 'treasure');
-        treasure.scale.setTo(0.25, 0.25);
+        // treasure = game.add.sprite(positionTreasureX, positionTreasureY, 'treasure');
+        // treasure.scale.setTo(0.25, 0.25);
 
         up_arrow = game.add.button(375, 710, 'up_arrow', upFunction, this, 2, 1, 0);
         up_arrow.scale.setTo(0.08, 0.08);
@@ -210,8 +210,8 @@ var foundSomething = false;
         operatorRequest.scale.setTo(0.1, 0.1);
         robotArms = game.add.button(300, 710, 'arms', armsDeployed, this, 2, 1, 0);
         robotArms.scale.setTo(0.20, 0.20);
-        clock = game.add.sprite(positionClockX, positionClockY, 'clock');
-        clock.scale.setTo(0.015, 0.015);
+        // clock = game.add.sprite(positionClockX, positionClockY, 'clock');
+        // clock.scale.setTo(0.015, 0.015);
     }
 
     function loopControl()
@@ -247,15 +247,15 @@ var foundSomething = false;
         {
         //decrease distanceY by 50.
         move.play();
+        distance = false;
         positionRobotY-=50;
         distanceY+=50;
         distanceClockY+=50;
         moves-=1;
     }
-    if(difficultySelected===0)
-    {
+
         robot.y-=50;
-    }
+
     if(difficultySelected===1)
     {
         
@@ -270,6 +270,13 @@ var foundSomething = false;
         clocked = false;
         moved = false;
         sonared = false;
+                treasure.destroy();
+        if(difficultySelected===1)
+        {
+        movesIncrease.destroy();
+        sonarIncrease.destroy();
+        clock.destroy();
+    }
 
 
     }
@@ -280,15 +287,15 @@ var foundSomething = false;
         {
         //increase distanceY by 50.
         move.play();
+        distance = false;
         positionRobotY+=50;
         distanceY-=50;
         distanceClockY-=50;
         moves-=1;
     }
-        if(difficultySelected===0)
-    {
+
         robot.y+=50;
-    }
+    
         if(difficultySelected===1)
     {
         distanceMovesY-=50;
@@ -302,6 +309,13 @@ var foundSomething = false;
                 clocked = false;
         moved = false;
         sonared = false;
+                treasure.destroy();
+        if(difficultySelected===1)
+        {
+        movesIncrease.destroy();
+        sonarIncrease.destroy();
+        clock.destroy();
+    }
 
     }
 
@@ -311,15 +325,15 @@ var foundSomething = false;
         {
         //decrease distanceX by 50.
         move.play();
+        distance = false;
         positionRobotX-=50;
         distanceX+=50;
         distanceClockX+=50;
         moves-=1;
     }
-        if(difficultySelected===0)
-    {
+
         robot.x-=50;
-    }
+    
         if(difficultySelected===1)
     {
         distanceMovesX+=50;
@@ -333,6 +347,13 @@ var foundSomething = false;
                 clocked = false;
         moved = false;
         sonared = false;
+                treasure.destroy();
+        if(difficultySelected===1)
+        {
+        movesIncrease.destroy();
+        sonarIncrease.destroy();
+        clock.destroy();
+    }
 
     }
 
@@ -342,15 +363,15 @@ var foundSomething = false;
         {
         //increase distanceX by 50.
         move.play();
+        distance = false;
         positionRobotX+=50;
         distanceX-=50;
         distanceClockX-=50;
         moves-=1;
     }
-        if(difficultySelected===0)
-    {
+
         robot.x+=50;
-    }
+    
         if(difficultySelected===1)
     {
         distanceMovesX-=50;
@@ -364,6 +385,13 @@ var foundSomething = false;
                 clocked = false;
         moved = false;
         sonared = false;
+                treasure.destroy();
+        if(difficultySelected===1)
+        {
+        movesIncrease.destroy();
+        sonarIncrease.destroy();
+        clock.destroy();
+    }
         
     }
 
@@ -374,8 +402,16 @@ var foundSomething = false;
             operatorRequest.inputEnabled = false;
 
         }
+        treasure = game.add.sprite(positionTreasureX, positionTreasureY, 'treasure');
+        treasure.scale.setTo(0.25, 0.25);
         if(difficultySelected===1)
         {
+                        movesIncrease = game.add.sprite(positionMovesX, positionMovesY, 'moveUp');
+            movesIncrease.scale.setTo(0.2, 0.2);
+            sonarIncrease = game.add.sprite(positionSonarX, positionSonarY, 'sonarUp');
+            sonarIncrease.scale.setTo(0.1, 0.1);
+                    clock = game.add.sprite(positionClockX, positionClockY, 'clock');
+        clock.scale.setTo(0.015, 0.015);
             moves-=1;
         robot.x = positionRobotX;
         robot.y = positionRobotY;
@@ -530,6 +566,14 @@ if(win===false && foundSomething===false)
     {
         //controls the distance boolean.
         distance = false;
+
+        treasure.destroy();
+        if(difficultySelected===1)
+        {
+        movesIncrease.destroy();
+        sonarIncrease.destroy();
+        clock.destroy();
+    }
     }
 
     function failedAction()
@@ -620,12 +664,12 @@ played = true;
         if(read===true)
         {
     game.debug.text('Easy Mode:', 32, 16);
-                game.debug.text('25 moves available, 7 SONAR requests, and 130 seconds.', 32, 36);
-    game.debug.text('Robot position is updated with every move, and only a time bonus present.', 32, 56);
+                game.debug.text('25 moves available, 7 SONAR requests, and 130 seconds; Robot position is updated constantly, ', 32, 36);
+    game.debug.text('and there are no bonus items; treasure is only visible with SONAR.', 32, 56);
     game.debug.text('Hard Mode:', 32, 96);
     game.debug.text('25 moves available, 7 SONAR requests, and 130 seconds...but currents are present,', 32, 116);
     game.debug.text('there are multiple robot-altering bonuses available, and the grid is more difficult.', 32, 136);
-                game.debug.text('Visual and text-based movement updates are only given with a SONAR request,', 32, 156);
+                game.debug.text('Treasure and other items are only available with a SONAR request (but robot moves are visual),', 32, 156);
     game.debug.text('and treasure is only available once it has moved >30px away from othe objects.', 32, 176);
     game.debug.text('Play "Easy" first to experience the game, then attempt "Hard".', 32, 196);
 
